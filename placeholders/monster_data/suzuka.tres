@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=3 format=3 uid="uid://24o66tjeg7be"]
+
+[ext_resource type="Material" uid="uid://das4xndtchfky" path="res://placeholders/materials/Suzuka.tres" id="1_ji7ih"]
+[ext_resource type="Script" uid="uid://s301iqgyeycs" path="res://scripts/monster_data.gd" id="2_0hjhq"]
+
+[resource]
+script = ExtResource("2_0hjhq")
+material = ExtResource("1_ji7ih")
+is_active = false
+metadata/_custom_type_script = "uid://s301iqgyeycs"

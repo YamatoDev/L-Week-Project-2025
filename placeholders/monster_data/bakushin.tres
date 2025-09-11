@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=3 format=3 uid="uid://cd8qqufriyivj"]
+
+[ext_resource type="Material" uid="uid://be3cefy2cgpfb" path="res://placeholders/materials/Bakushin.tres" id="1_jgy2d"]
+[ext_resource type="Script" uid="uid://s301iqgyeycs" path="res://scripts/monster_data.gd" id="1_m7thd"]
+
+[resource]
+script = ExtResource("1_m7thd")
+material = ExtResource("1_jgy2d")
+is_active = false
+metadata/_custom_type_script = "uid://s301iqgyeycs"

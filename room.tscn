@@ -55,7 +55,6 @@ size = Vector3(0.0803833, 4.65175, 1.58977)
 material = ExtResource("2_8cv3p")
 script = ExtResource("1_bisa2")
 space_screen = NodePath(".")
-base_screen_material = ExtResource("2_8cv3p")
 normal_screen_material = ExtResource("4_8cv3p")
 monsters = Array[ExtResource("4_mb7s7")]([ExtResource("5_xorjj"), ExtResource("6_xwbdb")])
 

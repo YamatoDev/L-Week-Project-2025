@@ -2,7 +2,6 @@ extends CSGBox3D
 class_name SpaceScreen
 
 @export var space_screen: CSGBox3D
-@export var base_screen_material: Material
 @export var normal_screen_material: Material
 @export var monsters: Array[MonsterData] = []
 
@@ -10,7 +9,6 @@ var is_active := false
 
 
 func _ready() -> void:
-	space_screen.material = base_screen_material
 	_update_monsters()
 
 
@@ -21,7 +19,6 @@ func _Activate() -> void:
 
 func _update_monsters() -> void:
 	if not is_active:
-		space_screen.material = base_screen_material
 		return
 
 	_update_monster_data(randi_range(0, 5))

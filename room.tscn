@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=13 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
@@ -17,10 +17,14 @@ albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01y1d"]
+albedo_color = Color(0.32549, 1, 1, 1)
+
 [node name="room" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, -0.165048, -0.986286, 0, 0.986286, -0.165048, 1, -7.21446e-09, -4.31119e-08, -0.06, 1.25, 0)
+transform = Transform3D(-4.37114e-08, -0.165048, -0.986286, 0, 0.986286, -0.165048, 1, -7.21446e-09, -4.31119e-08, 0.144829, 1.25, 0)
+fov = 83.5
 script = ExtResource("1_4o3f6")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
@@ -86,10 +90,12 @@ size = Vector3(0.319916, 2.20697, 2.82129)
 [node name="screen2" type="CSGBox3D" parent="CSGCombiner3D/desk1/thing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203341, -0.00784183, 0.665045)
 size = Vector3(0.089, 1.6, 1.232)
+material = SubResource("StandardMaterial3D_01y1d")
 
 [node name="screen1" type="CSGBox3D" parent="CSGCombiner3D/desk1/thing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.206655, -0.0119213, -0.667305)
 size = Vector3(0.089, 1.6, 1.232)
+material = SubResource("StandardMaterial3D_01y1d")
 
 [node name="steering" type="CSGCylinder3D" parent="CSGCombiner3D/desk1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203882, 0, -0.646634)

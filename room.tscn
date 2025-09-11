@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=14 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="4_v5vuv"]
 [ext_resource type="Resource" uid="uid://cd8qqufriyivj" path="res://placeholders/monster_data/bakushin.tres" id="5_xorjj"]
 [ext_resource type="Resource" uid="uid://24o66tjeg7be" path="res://placeholders/monster_data/suzuka.tres" id="6_xwbdb"]
+[ext_resource type="Script" uid="uid://b4u4d0lwaor02" path="res://scripts/code_manager.gd" id="9_42v8c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88gup"]
 albedo_color = Color(1, 0, 1, 1)
@@ -140,3 +141,12 @@ height = 0.317871
 [node name="Back" type="CSGBox3D" parent="CSGCombiner3D/Seat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.332456, 0.865683, 0.00253296)
 size = Vector3(0.144104, 0.847656, 0.559631)
+
+[node name="CodeManager" type="Node" parent="."]
+script = ExtResource("9_42v8c")
+
+[node name="code" type="Label3D" parent="CodeManager"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.17679, 2.58698, 0)
+modulate = Color(1, 0, 1, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "CODE"

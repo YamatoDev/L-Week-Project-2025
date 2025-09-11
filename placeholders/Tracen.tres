@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b0qat7hopsrhb"]
+
+[ext_resource type="Texture2D" uid="uid://cavuan6kk1e4n" path="res://placeholders/Tracen_Academy.png" id="1_mk1mt"]
+
+[resource]
+albedo_texture = ExtResource("1_mk1mt")

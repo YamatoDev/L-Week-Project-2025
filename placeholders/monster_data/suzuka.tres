@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("2_0hjhq")
+name = "Suzuka"
 material = ExtResource("1_ji7ih")
 is_active = false
 metadata/_custom_type_script = "uid://s301iqgyeycs"

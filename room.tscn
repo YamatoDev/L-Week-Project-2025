@@ -126,7 +126,6 @@ size = Vector3(0.666107, 0.0407104, 1.17236)
 
 [node name="Seat" type="CSGCylinder3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.641194, 0.0578613, 0)
-visible = false
 height = 0.134277
 
 [node name="Seat2" type="CSGCylinder3D" parent="CSGCombiner3D/Seat"]
@@ -141,6 +140,7 @@ height = 0.317871
 
 [node name="Back" type="CSGBox3D" parent="CSGCombiner3D/Seat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.332456, 0.865683, 0.00253296)
+visible = false
 size = Vector3(0.144104, 0.847656, 0.559631)
 
 [node name="CodeManager" type="Node" parent="."]
@@ -151,3 +151,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.086
 modulate = Color(1, 0, 1, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78648, 0)

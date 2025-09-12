@@ -15,6 +15,10 @@ run/main_scene="uid://bktbx3whhvrkq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameIdManager="*res://scripts/game_id_manager.gd"
+
 [dotnet]
 
 project/assembly_name="LWEEK"

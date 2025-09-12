@@ -146,7 +146,7 @@ size = Vector3(0.144104, 0.847656, 0.559631)
 [node name="CodeManager" type="Node" parent="."]
 script = ExtResource("9_42v8c")
 
-[node name="code" type="Label3D" parent="CodeManager"]
+[node name="code_display" type="Label3D" parent="CodeManager"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.08699, 2.15837, 0.679434)
 modulate = Color(1, 0, 1, 1)
 outline_modulate = Color(1, 1, 1, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=16 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://24o66tjeg7be" path="res://placeholders/monster_data/suzuka.tres" id="6_xwbdb"]
 [ext_resource type="Resource" uid="uid://chllexgl30bmp" path="res://placeholders/monster_data/golshi.tres" id="8_mb7s7"]
 [ext_resource type="Script" uid="uid://b4u4d0lwaor02" path="res://scripts/code_manager.gd" id="9_42v8c"]
+[ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://menu_screen.tscn" id="11_xorjj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88gup"]
 albedo_color = Color(1, 0, 1, 1)
@@ -23,6 +24,7 @@ albedo_color = Color(0, 1, 1, 1)
 albedo_color = Color(0.32549, 1, 1, 1)
 
 [node name="room" type="Node3D"]
+process_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.165048, -0.986286, 0, 0.986286, -0.165048, 1, -7.21446e-09, -4.31119e-08, 0.144829, 1.25, 0)
@@ -154,3 +156,8 @@ text = "CODE"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78648, 0)
+
+[node name="menu_screen" parent="." instance=ExtResource("11_xorjj")]
+process_mode = 3
+
+[connection signal="request_code_display" from="menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]

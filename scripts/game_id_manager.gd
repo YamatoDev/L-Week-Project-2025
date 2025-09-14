@@ -1,5 +1,6 @@
 extends Node
 
+#Code by Kaizen
 #This script manages the unique IDs of each game. It will choose a new ID and will never repeat the last one.
 #GAME_ID will be displayed using CODE_MANAGER script
 
@@ -14,7 +15,7 @@ var prev_id
 var id_array = [123, 456, 789, 691, 420, 360] #placeholders - replace with real codes
 var temp_num
 
-func _ready() -> void:
+func _find_code() -> void:
 	#finds old id stored in USER://ID_DATA.CFG
 	prev_id = _load_prev_id()
 	#unique id every game
@@ -32,10 +33,10 @@ func _load_prev_id() -> int:
 	return -1
 
 #repeats until unique id is made
-func _pick_unique_id(prev_id: int) -> int:
+func _pick_unique_id(previous: int) -> int:
 	temp_num = randi_range(0, id_array.size() - 1)
 	var temp_id = id_array[temp_num]
-	while temp_id == prev_id:
+	while temp_id == previous:
 		print("Previous GAME_ID used. Rerandomizing...")
 		temp_num = randi_range(0, id_array.size() - 1)
 		temp_id = id_array[temp_num]

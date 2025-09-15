@@ -1,5 +1,6 @@
 extends Resource
 class_name MonsterData
 
-@export var material: Material        # Drag your StandardMaterial3D or ShaderMaterial
+@export var name: String
+@export var material: Material        # Drag StandardMaterial3D
 @export var is_active: bool = false

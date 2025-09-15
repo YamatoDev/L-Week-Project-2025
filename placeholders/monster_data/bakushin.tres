@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_m7thd")
+name = "Bakushin"
 material = ExtResource("1_jgy2d")
 is_active = false
 metadata/_custom_type_script = "uid://s301iqgyeycs"

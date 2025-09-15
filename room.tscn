@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="4_v5vuv"]
 [ext_resource type="Resource" uid="uid://cd8qqufriyivj" path="res://placeholders/monster_data/bakushin.tres" id="5_xorjj"]
 [ext_resource type="Resource" uid="uid://24o66tjeg7be" path="res://placeholders/monster_data/suzuka.tres" id="6_xwbdb"]
+[ext_resource type="Resource" uid="uid://chllexgl30bmp" path="res://placeholders/monster_data/golshi.tres" id="8_mb7s7"]
 [ext_resource type="Script" uid="uid://b4u4d0lwaor02" path="res://scripts/code_manager.gd" id="9_42v8c"]
 [ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
 [ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="11_xorjj"]
@@ -59,7 +60,7 @@ material = ExtResource("2_8cv3p")
 script = ExtResource("1_bisa2")
 space_screen = NodePath(".")
 normal_screen_material = ExtResource("4_8cv3p")
-monsters = Array[ExtResource("4_mb7s7")]([ExtResource("5_xorjj"), ExtResource("6_xwbdb")])
+monsters = Array[ExtResource("4_mb7s7")]([ExtResource("5_xorjj"), ExtResource("6_xwbdb"), ExtResource("8_mb7s7")])
 
 [node name="panel_keyboard" type="CSGBox3D" parent="CSGCombiner3D/desk2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149043, -0.706683, -0.389251)
@@ -127,7 +128,6 @@ size = Vector3(0.666107, 0.0407104, 1.17236)
 
 [node name="Seat" type="CSGCylinder3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.641194, 0.0578613, 0)
-visible = false
 height = 0.134277
 
 [node name="Seat2" type="CSGCylinder3D" parent="CSGCombiner3D/Seat"]
@@ -142,13 +142,14 @@ height = 0.317871
 
 [node name="Back" type="CSGBox3D" parent="CSGCombiner3D/Seat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.332456, 0.865683, 0.00253296)
+visible = false
 size = Vector3(0.144104, 0.847656, 0.559631)
 
 [node name="CodeManager" type="Node" parent="."]
 script = ExtResource("9_42v8c")
 
 [node name="code" type="Label3D" parent="CodeManager"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.17679, 2.58698, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.08699, 2.15837, 0.679434)
 modulate = Color(1, 0, 1, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"

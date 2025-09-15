@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d0sa5n3my0fa4"]
+
+[ext_resource type="Texture2D" uid="uid://bpulhe3rgqb02" path="res://placeholders/GolShi.png" id="1_nsqke"]
+
+[resource]
+albedo_texture = ExtResource("1_nsqke")

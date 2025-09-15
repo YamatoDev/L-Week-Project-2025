@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=3 format=3 uid="uid://chllexgl30bmp"]
+
+[ext_resource type="Material" uid="uid://d0sa5n3my0fa4" path="res://placeholders/materials/Golshi.tres" id="1_jsat2"]
+[ext_resource type="Script" uid="uid://s301iqgyeycs" path="res://scripts/monster_data.gd" id="2_wb5yg"]
+
+[resource]
+script = ExtResource("2_wb5yg")
+name = "Golshi"
+material = ExtResource("1_jsat2")
+is_active = false
+metadata/_custom_type_script = "uid://s301iqgyeycs"

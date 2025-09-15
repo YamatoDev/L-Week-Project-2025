@@ -24,7 +24,7 @@ albedo_color = Color(0, 1, 1, 1)
 albedo_color = Color(0.32549, 1, 1, 1)
 
 [node name="room" type="Node3D"]
-process_mode = 1
+process_mode = 3
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.165048, -0.986286, 0, 0.986286, -0.165048, 1, -7.21446e-09, -4.31119e-08, 0.144829, 1.25, 0)

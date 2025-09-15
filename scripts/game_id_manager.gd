@@ -24,7 +24,7 @@ func _find_code() -> void:
 	#stores current GAME_ID to USER://ID_DATA.CFG
 	_save_prev_id(game_id)
 
-#loads PREV_ID. If ID_DATA.CFG doesn't exist, return invalid (-1)
+#loads PREV_ID. If ID_DATA.CFG doesn't exist, this won't do anything
 func _load_prev_id() -> int:
 	var saved_game_id = ConfigFile.new()
 	if saved_game_id.load("user://id_data.cfg") == OK:

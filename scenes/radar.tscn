@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcdij40ndv5cj"]
+
+[ext_resource type="Texture2D" uid="uid://djwwxeacbw3ue" path="res://textures/radarsweep.png" id="1_23uor"]
+[ext_resource type="Script" uid="uid://bbrkrlutqphwr" path="res://scripts/radar.gd" id="1_g0dnf"]
+[ext_resource type="Shader" uid="uid://byi5lg2ngi77s" path="res://shaders/radar_bg.gdshader" id="1_vnohn"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_g0dnf"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5eocc"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_g0dnf")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ot4hg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_23uor"]
+shader = ExtResource("1_vnohn")
+shader_parameter/cell_size = 12.0
+shader_parameter/cell_spacing = 2.0
+shader_parameter/line_color = Color(2.58703e-07, 0.298356, 0.145828, 1)
+shader_parameter/bg_color = Color(3.24883e-07, 0.167231, 0.0645897, 1)
+
+[node name="Radar" type="Node3D" node_paths=PackedStringArray("radar_sweep", "viewport")]
+script = ExtResource("1_g0dnf")
+radar_sweep = NodePath("SubViewport/radarsweep")
+viewport = NodePath("SubViewport")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.05975e-08, 0.6, 4.52987e-08, -2.62268e-08, 4.52987e-08, -0.6, -0.6, 9.05975e-08, 2.62268e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5eocc")
+mesh = SubResource("PlaneMesh_ot4hg")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+material = SubResource("ShaderMaterial_23uor")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="radarsweep" type="TextureRect" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(256, 256)
+texture = ExtResource("1_23uor")

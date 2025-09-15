@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=16 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
@@ -9,6 +9,8 @@
 [ext_resource type="Resource" uid="uid://cd8qqufriyivj" path="res://placeholders/monster_data/bakushin.tres" id="5_xorjj"]
 [ext_resource type="Resource" uid="uid://24o66tjeg7be" path="res://placeholders/monster_data/suzuka.tres" id="6_xwbdb"]
 [ext_resource type="Script" uid="uid://b4u4d0lwaor02" path="res://scripts/code_manager.gd" id="9_42v8c"]
+[ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
+[ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="11_xorjj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88gup"]
 albedo_color = Color(1, 0, 1, 1)
@@ -24,7 +26,7 @@ albedo_color = Color(0.32549, 1, 1, 1)
 [node name="room" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, -0.165048, -0.986286, 0, 0.986286, -0.165048, 1, -7.21446e-09, -4.31119e-08, 0.144829, 1.25, 0)
+transform = Transform3D(1.31134e-07, 0.165048, 0.986286, 0, 0.986286, -0.165048, -1, 2.16434e-08, 1.29336e-07, 0.144829, 1.25, 0)
 fov = 83.5
 script = ExtResource("1_4o3f6")
 
@@ -150,3 +152,13 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.176
 modulate = Color(1, 0, 1, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+
+[node name="radar" parent="." instance=ExtResource("10_mb7s7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07572, 1.68, 0.66922)
+
+[node name="ShipMap" parent="." node_paths=PackedStringArray("radar_init") instance=ExtResource("11_xorjj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -10, 0)
+radar_init = NodePath("../radar")

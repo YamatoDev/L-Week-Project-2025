@@ -14,9 +14,9 @@ func rotate_sweep(rotation) -> void:
 func add_ping(x: float, y: float) -> void:
 	var ping = TextureRect.new()
 
-	ping.texture = load("res://textures/placeholder.tres")
+	ping.texture = load("res://textures/radar_ping.png")
 	ping.name = "RadarPing"
-	ping.size = Vector2(40, 40)
+	ping.size = Vector2(16, 16)
 
 	var center = viewport.size / 2
 	var ping_offset = ping.size / 2

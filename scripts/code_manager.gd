@@ -1,21 +1,10 @@
 extends Node
 
-#unique identifier for each game
-var game_id
+#Code by Kaizen
 
-#codes here
-var code_array = [123, 456, 789, 691, 420, 360] #placeholders - replace with real codes
-var num
+@onready var code_display = $code_display
 
-@onready var code_label = $code
-
-#finds a random code for each start of the game and assigns it to GAME_ID
-func _init() -> void:
-	num = randi_range(0, (code_array.size() - 1))
-	game_id = code_array[num]
-
-func _ready() -> void:
-	display_code()
-
-func display_code():
-	code_label.text = str(game_id)
+#uses the signal created in MENU_SCREEN.GD to apply it in CODEMANAGER node
+func _on_menu_screen_request_code_display(game_id: int) -> void:
+	code_display.text = str(game_id)
+	print("Current game_id: ", game_id)

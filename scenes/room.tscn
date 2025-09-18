@@ -176,3 +176,5 @@ process_mode = 3
 [node name="AudioPanel" parent="." instance=ExtResource("1_tk5fv")]
 process_mode = 3
 visible = false
+
+[connection signal="request_code_display" from="menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]

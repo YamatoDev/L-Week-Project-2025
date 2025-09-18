@@ -1,7 +1,7 @@
 extends Control
 
-#Code by Kaizen
-#This is a simple Menu to act as a gate for new players. They must first press the big red button to start the game.
+# Code by Kaizen
+# This is a simple Menu to act as a gate for new players. They must first press the big red button to start the game.
 
 #creates a signal so it can be used by main scene tree
 signal request_code_display(game_id: int)

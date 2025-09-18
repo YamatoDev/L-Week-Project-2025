@@ -170,8 +170,9 @@ radar_init = NodePath("../radar")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78648, 0)
 
+[node name="menu_screen" parent="." instance=ExtResource("13_23wr2")]
+process_mode = 3
+
 [node name="AudioPanel" parent="." instance=ExtResource("1_tk5fv")]
 process_mode = 3
 visible = false
-
-[node name="menu_screen" parent="." instance=ExtResource("13_23wr2")]

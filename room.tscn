@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=22 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b4u4d0lwaor02" path="res://scripts/code_manager.gd" id="9_42v8c"]
 [ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
 [ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="11_xorjj"]
+[ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="13_voycu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwbdb"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -36,6 +37,23 @@ albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01y1d"]
 albedo_color = Color(0.32549, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6tcb1"]
+shader = ExtResource("13_voycu")
+shader_parameter/resolution = Vector2(640, 460)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.05
+shader_parameter/noise_amount = 0.1
+shader_parameter/interference_amount = 1.0
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 3.8e-07
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
 
 [node name="room" type="Node3D"]
 
@@ -183,3 +201,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07572, 1.68, 0.66922)
 [node name="ShipMap" parent="." node_paths=PackedStringArray("radar_init") instance=ExtResource("11_xorjj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -10, 0)
 radar_init = NodePath("../radar")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_6tcb1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

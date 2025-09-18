@@ -1,19 +1,28 @@
 class_name Ship extends Node3D
 
-@export var radar: Radar
+var radar: Radar: set = _set_radar, get = _get_radar
 @export var ray: Marker3D
 @export var rotation_speed: float
 
 var hit_bodies: Array = []
 
 func _ready() -> void:
-	pass
+	if (radar == null): push_error("Why is your radar fucked?")
+
+func _set_radar(_radar: Radar) -> void:
+	radar = _radar
+	print("Set new Radar: ", _radar)
+	print("Current Radar: ", radar)
+	print(get_stack())
+
+func _get_radar() -> Radar:
+	return radar
 
 func _physics_process(delta: float) -> void:
 	ray.rotate_y(-deg_to_rad(rotation_speed * delta))
-	radar.rotate_sweep(-ray.rotation_degrees.y)
+	radar.rotate_sweep(-ray.rotation_degrees.y) # ???????????
 
-# func _process(_delta: float) -> void:
+# func _process(_delta: float) -> void:f
 # 	if (ray.is_colliding()):
 # 		var body: Area3D = ray.get_collider()
 # 		if (!hit_bodies.has(body)):

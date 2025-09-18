@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=19 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b4u4d0lwaor02" path="res://scripts/code_manager.gd" id="9_42v8c"]
 [ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
 [ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="11_xorjj"]
+[ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="13_23wr2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88gup"]
 albedo_color = Color(1, 0, 1, 1)
@@ -151,7 +152,7 @@ size = Vector3(0.144104, 0.847656, 0.559631)
 script = ExtResource("9_42v8c")
 
 [node name="code_display" type="Label3D" parent="CodeManager"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.08699, 2.15837, 0.679434)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.08699, 2.35837, 0.679434)
 modulate = Color(1, 0, 1, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"
@@ -165,14 +166,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07572, 1.68, 0.66922)
 [node name="ShipMap" parent="." node_paths=PackedStringArray("radar_init") instance=ExtResource("11_xorjj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -10, 0)
 radar_init = NodePath("../radar")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78648, 0)
-
-[node name="menu_screen" parent="." instance=ExtResource("11_xorjj")]
-process_mode = 3
 
 [node name="AudioPanel" parent="." instance=ExtResource("1_tk5fv")]
 process_mode = 3
 visible = false
 
-[connection signal="request_code_display" from="menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]
+[node name="menu_screen" parent="." instance=ExtResource("13_23wr2")]

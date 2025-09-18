@@ -8,7 +8,6 @@ func _ready() -> void:
 
 func rotate_sweep(rotation) -> void:
 	radar_sweep.rotation_degrees = rotation
-	pass
 
 # offset
 func add_ping(x: float, y: float) -> void:

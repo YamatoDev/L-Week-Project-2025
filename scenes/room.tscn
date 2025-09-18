@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=22 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
@@ -14,6 +14,20 @@
 [ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
 [ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="11_xorjj"]
 [ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="13_23wr2"]
+[ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="13_voycu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwbdb"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_voycu"]
+sky_material = SubResource("ProceduralSkyMaterial_xwbdb")
+
+[sub_resource type="Environment" id="Environment_6tcb1"]
+background_mode = 2
+sky = SubResource("Sky_voycu")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88gup"]
 albedo_color = Color(1, 0, 1, 1)
@@ -26,8 +40,32 @@ albedo_color = Color(0, 1, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01y1d"]
 albedo_color = Color(0.32549, 1, 1, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6tcb1"]
+shader = ExtResource("13_voycu")
+shader_parameter/resolution = Vector2(640, 460)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.05
+shader_parameter/noise_amount = 0.1
+shader_parameter/interference_amount = 1.0
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 3.8e-07
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
 [node name="room" type="Node3D"]
 process_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6tcb1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1.31134e-07, 0.165048, 0.986286, 0, 0.986286, -0.165048, -1, 2.16434e-08, 1.29336e-07, 0.144829, 1.25, 0)
@@ -178,3 +216,12 @@ process_mode = 3
 visible = false
 
 [connection signal="request_code_display" from="menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_6tcb1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

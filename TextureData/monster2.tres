@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TextureData" load_steps=3 format=3 uid="uid://cvjdwti20hg6r"]
+
+[ext_resource type="Script" uid="uid://dcw06i4v03dp" path="res://scripts/texture_data.gd" id="1_5nu0r"]
+[ext_resource type="Texture2D" uid="uid://crcku8r0uhk8v" path="res://GDG L-Week Art/space_illustration_monster1.png" id="2_oqcgw"]
+
+[resource]
+script = ExtResource("1_5nu0r")
+name = "Monster2"
+texture = ExtResource("2_oqcgw")
+metadata/_custom_type_script = "uid://dcw06i4v03dp"

@@ -15,6 +15,7 @@ func _ready() -> void:
 #disables this node so you can play the game
 func _on_start_button_pressed() -> void:
 	GameIdManager._find_code()
+	$"../../Environment/Chunk A/EnemySpawnContainer"._retrieve_id()
 	emit_signal("request_code_display", GameIdManager.game_id)
 	anim_player.play("fade_out")
 	await anim_player.animation_finished

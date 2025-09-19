@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1xokn2kunm3"]
+
+[ext_resource type="Script" uid="uid://o3nr6uliv6up" path="res://scripts/asteroid_spawner.gd" id="1_e6spt"]
+[ext_resource type="PackedScene" uid="uid://crvpnotk1y8s8" path="res://scenes/asteroid.tscn" id="2_g31ip"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ltblv"]
+size = Vector3(240, 1, 1)
+
+[node name="asteroid_spawner" type="Node3D" node_paths=PackedStringArray("area")]
+script = ExtResource("1_e6spt")
+area = NodePath("Area3D")
+asteroid_instance_path = ExtResource("2_g31ip")
+spawn_cd = 5.0
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0, 0)
+shape = SubResource("BoxShape3D_ltblv")

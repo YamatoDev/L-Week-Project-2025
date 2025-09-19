@@ -28,6 +28,8 @@ func _process(delta: float) -> void:
 			randf_range(shape_min.z, shape_max.z)
 		))
 		new_asteroid.set_rotation_degrees(global_rotation_degrees)
+
+		new_asteroid.ship = ship
 		
 		get_tree().root.add_child(new_asteroid)
 		

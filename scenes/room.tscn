@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=25 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
+[ext_resource type="PackedScene" uid="uid://bw03wvv367lsg" path="res://models/Spaceship.blend" id="1_dynfe"]
 [ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
 [ext_resource type="Material" uid="uid://bvpf5l285dyqe" path="res://placeholders/materials/Base.tres" id="2_8cv3p"]
 [ext_resource type="Material" uid="uid://b0qat7hopsrhb" path="res://placeholders/materials/Tracen.tres" id="4_8cv3p"]
@@ -11,51 +12,74 @@
 [ext_resource type="Resource" uid="uid://24o66tjeg7be" path="res://placeholders/monster_data/suzuka.tres" id="6_xwbdb"]
 [ext_resource type="Resource" uid="uid://chllexgl30bmp" path="res://placeholders/monster_data/golshi.tres" id="8_mb7s7"]
 [ext_resource type="Script" uid="uid://b4u4d0lwaor02" path="res://scripts/code_manager.gd" id="9_42v8c"]
-[ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="11_xorjj"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88gup"]
-albedo_color = Color(1, 0, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bisa2"]
-albedo_color = Color(0, 1, 1, 1)
+[ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
+[ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="11_xorjj"]
+[ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="13_23wr2"]
+[ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="13_voycu"]
+[ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="14_vfrn5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
+height = 0.388062
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01y1d"]
-albedo_color = Color(0.32549, 1, 1, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwbdb"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_voycu"]
+sky_material = SubResource("ProceduralSkyMaterial_xwbdb")
+
+[sub_resource type="Environment" id="Environment_6tcb1"]
+background_mode = 1
+sky = SubResource("Sky_voycu")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_katsu"]
+noise_type = 5
+seed = 4
+frequency = 1.0
+fractal_octaves = 1
+fractal_lacunarity = -1.385
+fractal_gain = 4.03
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxwrd"]
+seamless = true
+noise = SubResource("FastNoiseLite_katsu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6tcb1"]
+shader = ExtResource("13_voycu")
+shader_parameter/resolution = Vector2(640, 460)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.05
+shader_parameter/noise_amount = 0.1
+shader_parameter/interference_amount = 1.0
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 3.8e-07
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
 
 [node name="room" type="Node3D"]
 process_mode = 1
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, -0.165048, -0.986286, 0, 0.986286, -0.165048, 1, -7.21446e-09, -4.31119e-08, 0.144829, 1.25, 0)
-fov = 83.5
-script = ExtResource("1_4o3f6")
+[node name="Spaceship2" parent="." instance=ExtResource("1_dynfe")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04626, 0, 0.075446)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="Node3D" type="StaticBody3D" parent="Spaceship2" node_paths=PackedStringArray("spaceScreen")]
+transform = Transform3D(-1.74743e-08, -5.98307e-10, -0.4, -0.0136877, 0.399766, 2.03775e-15, 0.399766, 0.0136877, -1.74846e-08, -0.00366347, 0.712128, 1.36413)
+script = ExtResource("4_v5vuv")
+spaceScreen = NodePath("../screen")
 
-[node name="West" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125197, 1.444, 1.92864)
-size = Vector3(3.48877, 2.927, 0.123)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaceship2/Node3D"]
+transform = Transform3D(1, 1.82539e-07, 9.26442e-22, -1.82539e-07, 1, 1.27055e-21, -1.3017e-21, 1.69407e-21, 1, 0, 0.486145, 0)
+shape = SubResource("CylinderShape3D_v5vuv")
 
-[node name="North" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.55928, 1.44391, -0.0125866)
-size = Vector3(3.73718, 2.927, 0.123)
-
-[node name="East" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115784, 1.44391, -1.93824)
-size = Vector3(3.4834, 2.927, 0.123)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.112808, 0, -0.0178528)
-size = Vector3(3.53781, 0.05, 3.94867)
-
-[node name="desk2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.75, 1.77189, 1.46599, -0.00367737)
-size = Vector3(0.172485, 2.87274, 5.00577)
-
-[node name="screen" type="CSGBox3D" parent="CSGCombiner3D/desk2" node_paths=PackedStringArray("space_screen")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.143008, 0.531644, 0.0368115)
+[node name="screen" type="CSGBox3D" parent="Spaceship2" node_paths=PackedStringArray("space_screen")]
+transform = Transform3D(-4.37114e-08, -0.75, 3.27836e-08, 0, -4.37114e-08, -1, 1, -3.27835e-08, 1.43301e-15, 0.0515147, 1.99763, 1.87285)
 size = Vector3(0.0803833, 4.65175, 1.58977)
 material = ExtResource("2_8cv3p")
 script = ExtResource("1_bisa2")
@@ -63,106 +87,52 @@ space_screen = NodePath(".")
 normal_screen_material = ExtResource("4_8cv3p")
 monsters = Array[ExtResource("4_mb7s7")]([ExtResource("5_xorjj"), ExtResource("6_xwbdb"), ExtResource("8_mb7s7")])
 
-[node name="panel_keyboard" type="CSGBox3D" parent="CSGCombiner3D/desk2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149043, -0.706683, -0.389251)
-size = Vector3(0.0803833, 0.629433, 2.43681)
-material = SubResource("StandardMaterial3D_88gup")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6tcb1")
 
-[node name="button" type="CSGCylinder3D" parent="CSGCombiner3D/desk2"]
-transform = Transform3D(0.0342192, -0.999414, 0, 0.999414, 0.0342192, 0, 0, 0, 1, -0.14924, -0.72689, 1.26877)
-radius = 0.2
-height = 0.1
-material = SubResource("StandardMaterial3D_bisa2")
-
-[node name="Node3D" type="StaticBody3D" parent="CSGCombiner3D/desk2/button" node_paths=PackedStringArray("spaceScreen")]
-transform = Transform3D(0.39, 0, 0, 0, 0.11, 0, 0, 0, 0.39, 0, 0, 0)
-script = ExtResource("4_v5vuv")
-spaceScreen = NodePath("../../screen")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/desk2/button/Node3D"]
-transform = Transform3D(1, 2.45085e-09, 0, -2.45085e-09, 1, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_v5vuv")
-
-[node name="desk1" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.881097, 0.300278, 0)
-size = Vector3(1.24042, 0.540771, 2.82129)
-
-[node name="thing" type="CSGBox3D" parent="CSGCombiner3D/desk1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.459154, 1.35689, 0)
-size = Vector3(0.319916, 2.20697, 2.82129)
-
-[node name="screen2" type="CSGBox3D" parent="CSGCombiner3D/desk1/thing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203341, -0.00784183, 0.665045)
-size = Vector3(0.089, 1.6, 1.232)
-material = SubResource("StandardMaterial3D_01y1d")
-
-[node name="screen1" type="CSGBox3D" parent="CSGCombiner3D/desk1/thing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.206655, -0.0119213, -0.667305)
-size = Vector3(0.089, 1.6, 1.232)
-material = SubResource("StandardMaterial3D_01y1d")
-
-[node name="steering" type="CSGCylinder3D" parent="CSGCombiner3D/desk1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203882, 0, -0.646634)
-radius = 0.35
-height = 0.635
-
-[node name="leverhandle" type="CSGBox3D" parent="CSGCombiner3D/desk1/steering"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00963509, 0.44699, 0.00281787)
-size = Vector3(0.1, 0.277, 0.1)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/desk1/steering"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.773499, 0)
-radius = 0.15
-height = 0.453003
-
-[node name="lever" type="CSGBox3D" parent="CSGCombiner3D/desk1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190814, 0.287084, 0.0104735)
-size = Vector3(0.666107, 0.0407104, 0.123291)
-
-[node name="leverhandle" type="CSGBox3D" parent="CSGCombiner3D/desk1/lever"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00788546, 0.286296, -0.0015232)
-size = Vector3(0.056, 0.52, 0.056)
-
-[node name="progressbar" type="CSGBox3D" parent="CSGCombiner3D/desk1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.197907, 0.293778, 0.715322)
-size = Vector3(0.666107, 0.0407104, 1.17236)
-
-[node name="Seat" type="CSGCylinder3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.641194, 0.0578613, 0)
-height = 0.134277
-
-[node name="Seat2" type="CSGCylinder3D" parent="CSGCombiner3D/Seat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145446, 0.535955, 0)
-radius = 0.4
-height = 0.183
-
-[node name="Seat" type="CSGCylinder3D" parent="CSGCombiner3D/Seat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0072723, 0.29425, 0)
-radius = 0.1
-height = 0.317871
-
-[node name="Back" type="CSGBox3D" parent="CSGCombiner3D/Seat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.332456, 0.865683, 0.00253296)
-visible = false
-size = Vector3(0.144104, 0.847656, 0.559631)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.29142e-07, -0.00872618, 0.999962, 2.27712e-08, 0.999962, 0.00872618, -1, 2.16434e-08, 1.29336e-07, 0.739615, 1.65, 0.00217557)
+fov = 83.5
+script = ExtResource("1_4o3f6")
 
 [node name="CodeManager" type="Node" parent="."]
 script = ExtResource("9_42v8c")
 
 [node name="code_display" type="Label3D" parent="CodeManager"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.08699, 2.15837, 0.679434)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.93368, 2.70166, -1.42334)
 modulate = Color(1, 0, 1, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78648, 0)
+[node name="radar" parent="." instance=ExtResource("10_mb7s7")]
+transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -2.04404, 2.72646, 0.0671765)
 
-[node name="menu_screen" parent="." instance=ExtResource("11_xorjj")]
-process_mode = 3
+[node name="ShipMap" parent="." node_paths=PackedStringArray("radar_init") instance=ExtResource("11_xorjj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -10, 0)
+radar_init = NodePath("../radar")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.78648, 0)
+light_color = Color(0.913725, 1, 0.85098, 1)
+light_energy = 0.5
+script = ExtResource("14_vfrn5")
+noise = SubResource("NoiseTexture2D_jxwrd")
 
 [node name="AudioPanel" parent="." instance=ExtResource("1_tk5fv")]
 process_mode = 3
 visible = false
 
-[connection signal="request_code_display" from="menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_6tcb1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="menu_screen" parent="CanvasLayer" instance=ExtResource("13_23wr2")]
+process_mode = 3
+
+[connection signal="request_code_display" from="CanvasLayer/menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]

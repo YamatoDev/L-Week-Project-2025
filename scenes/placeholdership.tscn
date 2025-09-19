@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccsgtqlp125ma"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88gup"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bisa2"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01y1d"]
+albedo_color = Color(0.32549, 1, 1, 1)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D"]
+visible = false
+
+[node name="West" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125197, 1.444, 1.92864)
+size = Vector3(3.48877, 2.927, 0.123)
+
+[node name="North" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.55928, 1.44391, -0.0125866)
+size = Vector3(3.73718, 2.927, 0.123)
+
+[node name="East" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115784, 1.44391, -1.93824)
+size = Vector3(3.4834, 2.927, 0.123)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.112808, 0, -0.0178528)
+size = Vector3(3.53781, 0.05, 3.94867)
+
+[node name="desk2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.75, 1.77189, 1.46599, -0.00367737)
+size = Vector3(0.172485, 2.87274, 5.00577)
+
+[node name="panel_keyboard" type="CSGBox3D" parent="desk2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149043, -0.706683, -0.389251)
+size = Vector3(0.0803833, 0.629433, 2.43681)
+material = SubResource("StandardMaterial3D_88gup")
+
+[node name="button" type="CSGCylinder3D" parent="desk2"]
+transform = Transform3D(0.0342192, -0.999414, 0, 0.999414, 0.0342192, 0, 0, 0, 1, -0.14924, -0.72689, 1.26877)
+radius = 0.2
+height = 0.1
+material = SubResource("StandardMaterial3D_bisa2")
+
+[node name="desk1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.881097, 0.300278, 0)
+size = Vector3(1.24042, 0.540771, 2.82129)
+
+[node name="thing" type="CSGBox3D" parent="desk1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.459154, 1.35689, 0)
+size = Vector3(0.319916, 2.20697, 2.82129)
+
+[node name="screen2" type="CSGBox3D" parent="desk1/thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203341, -0.00784183, 0.665045)
+size = Vector3(0.089, 1.6, 1.232)
+material = SubResource("StandardMaterial3D_01y1d")
+
+[node name="screen1" type="CSGBox3D" parent="desk1/thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.206655, -0.0119213, -0.667305)
+size = Vector3(0.089, 1.6, 1.232)
+material = SubResource("StandardMaterial3D_01y1d")
+
+[node name="steering" type="CSGCylinder3D" parent="desk1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203882, 0, -0.646634)
+radius = 0.35
+height = 0.635
+
+[node name="leverhandle" type="CSGBox3D" parent="desk1/steering"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00963509, 0.44699, 0.00281787)
+size = Vector3(0.1, 0.277, 0.1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="desk1/steering"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.773499, 0)
+radius = 0.15
+height = 0.453003
+
+[node name="lever" type="CSGBox3D" parent="desk1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190814, 0.287084, 0.0104735)
+size = Vector3(0.666107, 0.0407104, 0.123291)
+
+[node name="leverhandle" type="CSGBox3D" parent="desk1/lever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00788546, 0.286296, -0.0015232)
+size = Vector3(0.056, 0.52, 0.056)
+
+[node name="progressbar" type="CSGBox3D" parent="desk1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.197907, 0.293778, 0.715322)
+size = Vector3(0.666107, 0.0407104, 1.17236)
+
+[node name="Seat" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.641194, 0.0578613, 0)
+height = 0.134277
+
+[node name="Seat2" type="CSGCylinder3D" parent="Seat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145446, 0.535955, 0)
+radius = 0.4
+height = 0.183
+
+[node name="Seat" type="CSGCylinder3D" parent="Seat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0072723, 0.29425, 0)
+radius = 0.1
+height = 0.317871
+
+[node name="Back" type="CSGBox3D" parent="Seat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.332456, 0.865683, 0.00253296)
+visible = false
+size = Vector3(0.144104, 0.847656, 0.559631)

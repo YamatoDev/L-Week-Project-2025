@@ -42,8 +42,6 @@ min_value = 0.001
 max_value = 2.0
 step = 0.1
 value = 0.001
-script = ExtResource("1_0or1g")
-bus_name = "Master"
 
 [node name="BGMLabel" type="Label" parent="VBoxContainer2"]
 visible = false
@@ -59,8 +57,6 @@ min_value = 0.001
 max_value = 2.0
 step = 0.1
 value = 0.001
-script = ExtResource("1_0or1g")
-bus_name = "bgm"
 
 [node name="SFXLabel" type="Label" parent="VBoxContainer2"]
 layout_mode = 2

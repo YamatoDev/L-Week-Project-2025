@@ -4,7 +4,7 @@ var mouse = Vector2()
 var flipped := false
 var last_toggle_time := 0
 var toggle_cooldown := 1000   # milliseconds (0.3s)
-var target_y_rotation := -90.0
+var target_y_rotation := 90.0
 var rotation_speed := 5.0 # degrees per frame, adjust for smoothness
 
 # Shaking part

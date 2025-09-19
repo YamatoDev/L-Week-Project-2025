@@ -1,0 +1,151 @@
+[gd_scene load_steps=27 format=3 uid="uid://c5pxepwjtfnb7"]
+
+[ext_resource type="PackedScene" uid="uid://bw03wvv367lsg" path="res://models/Spaceship.blend" id="1_kthgp"]
+[ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="2_25jaq"]
+[ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/button.wav" id="3_ou6ik"]
+[ext_resource type="Material" uid="uid://bvpf5l285dyqe" path="res://placeholders/materials/Base.tres" id="4_u8fd2"]
+[ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="5_a2f88"]
+[ext_resource type="Material" uid="uid://b0qat7hopsrhb" path="res://placeholders/materials/Tracen.tres" id="6_bpcbs"]
+[ext_resource type="Script" uid="uid://s301iqgyeycs" path="res://scripts/monster_data.gd" id="7_7i2vf"]
+[ext_resource type="Resource" uid="uid://cd8qqufriyivj" path="res://placeholders/monster_data/bakushin.tres" id="8_o04p2"]
+[ext_resource type="Resource" uid="uid://24o66tjeg7be" path="res://placeholders/monster_data/suzuka.tres" id="9_v4req"]
+[ext_resource type="Resource" uid="uid://chllexgl30bmp" path="res://placeholders/monster_data/golshi.tres" id="10_jgc7q"]
+[ext_resource type="PackedScene" uid="uid://da8i0dv3phi4m" path="res://scenes/photography.tscn" id="11_25jaq"]
+[ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="11_k81o3"]
+[ext_resource type="Script" uid="uid://b4u4d0lwaor02" path="res://scripts/code_manager.gd" id="12_wefvi"]
+[ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="13_fxany"]
+[ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="14_hrjob"]
+[ext_resource type="Script" path="res://scripts/flickering_light.gd" id="15_e0mr4"]
+[ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="16_nxmyo"]
+[ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="17_l6o08"]
+[ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="18_xbxm6"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
+height = 0.388062
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwbdb"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_voycu"]
+sky_material = SubResource("ProceduralSkyMaterial_xwbdb")
+
+[sub_resource type="Environment" id="Environment_6tcb1"]
+background_mode = 1
+sky = SubResource("Sky_voycu")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_katsu"]
+noise_type = 5
+seed = 4
+frequency = 1.0
+fractal_octaves = 1
+fractal_lacunarity = -1.385
+fractal_gain = 4.03
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxwrd"]
+seamless = true
+noise = SubResource("FastNoiseLite_katsu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6tcb1"]
+shader = ExtResource("16_nxmyo")
+shader_parameter/resolution = Vector2(640, 460)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.05
+shader_parameter/noise_amount = 0.1
+shader_parameter/interference_amount = 1.0
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 3.8e-07
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="room" type="Node3D"]
+process_mode = 1
+
+[node name="Spaceship2" parent="." instance=ExtResource("1_kthgp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04626, 0, 0.075446)
+
+[node name="Node3D" type="StaticBody3D" parent="Spaceship2" node_paths=PackedStringArray("spaceScreen")]
+transform = Transform3D(-1.74743e-08, -5.98307e-10, -0.4, -0.0136877, 0.399766, 2.03775e-15, 0.399766, 0.0136877, -1.74846e-08, -0.00366347, 0.712128, 1.36413)
+script = ExtResource("2_25jaq")
+spaceScreen = NodePath("../screen")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaceship2/Node3D"]
+transform = Transform3D(1, 1.82539e-07, 9.26442e-22, -1.82539e-07, 1, 1.27055e-21, -1.3017e-21, 1.69407e-21, 1, 0, 0.486145, 0)
+shape = SubResource("CylinderShape3D_v5vuv")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Spaceship2/Node3D"]
+stream = ExtResource("3_ou6ik")
+bus = &"sfx"
+
+[node name="screen" type="CSGBox3D" parent="Spaceship2" node_paths=PackedStringArray("sound", "space_screen")]
+transform = Transform3D(-4.37114e-08, -0.75, 3.27836e-08, 0, -4.37114e-08, -1, 1, -3.27835e-08, 1.43301e-15, 0.0515147, 1.99763, 1.87285)
+visible = false
+size = Vector3(0.0803833, 4.65175, 1.58977)
+material = ExtResource("4_u8fd2")
+script = ExtResource("5_a2f88")
+sound = NodePath("../Node3D/AudioStreamPlayer3D")
+space_screen = NodePath(".")
+normal_screen_material = ExtResource("6_bpcbs")
+monsters = Array[ExtResource("7_7i2vf")]([ExtResource("8_o04p2"), ExtResource("9_v4req"), ExtResource("10_jgc7q")])
+
+[node name="screen2" parent="Spaceship2" instance=ExtResource("11_25jaq")]
+transform = Transform3D(-2.665, 0, -1.50996e-07, 0, 1.195, 0, 4.02404e-07, 0, -1, 0, 2.03277, 1.84)
+
+[node name="SubViewport" type="SubViewport" parent="Spaceship2"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6tcb1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.29142e-07, -0.00872618, 0.999962, 2.27712e-08, 0.999962, 0.00872618, -1, 2.16434e-08, 1.29336e-07, 0.739615, 1.65, 0.00217557)
+fov = 83.5
+script = ExtResource("11_k81o3")
+
+[node name="CodeManager" type="Node" parent="."]
+script = ExtResource("12_wefvi")
+
+[node name="code_display" type="Label3D" parent="CodeManager"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.93368, 2.70166, -1.42334)
+modulate = Color(1, 0, 1, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "CODE"
+
+[node name="radar" parent="." instance=ExtResource("13_fxany")]
+transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -2.04404, 2.72646, 0.0671765)
+
+[node name="ShipMap" parent="." node_paths=PackedStringArray("radar_init") instance=ExtResource("14_hrjob")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -10, 0)
+radar_init = NodePath("../radar")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.78648, 0)
+light_color = Color(0.913725, 1, 0.85098, 1)
+light_energy = 0.5
+script = ExtResource("15_e0mr4")
+noise = SubResource("NoiseTexture2D_jxwrd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_6tcb1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="menu_screen" parent="CanvasLayer" instance=ExtResource("17_l6o08")]
+process_mode = 3
+
+[node name="AudioPanel" parent="CanvasLayer" instance=ExtResource("18_xbxm6")]
+process_mode = 3
+visible = false
+
+[connection signal="request_code_display" from="CanvasLayer/menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]

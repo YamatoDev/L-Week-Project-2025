@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var spaceScreen: SpaceScreen
+@export var spaceScreen: PhotographyScreen
 
 func _ready() -> void:
 	add_to_group("Player")

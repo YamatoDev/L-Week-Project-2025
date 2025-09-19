@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=32 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="14_vfrn5"]
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
 [ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
+[ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scenes/chunk_B_spawn_logic.gd" id="19_spkk5"]
+[ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scenes/chunk_C_spawn_logic.gd" id="20_yggoe"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
 height = 0.388062
@@ -163,7 +165,7 @@ shape = SubResource("BoxShape3D_vfrn5")
 script = ExtResource("18_jxwrd")
 code_manager = NodePath("../../../CodeManager")
 enemy_spawns = [NodePath("Spawn 1"), NodePath("Spawn 2"), NodePath("Spawn 3"), NodePath("Spawn 4"), NodePath("Spawn 5"), NodePath("Spawn 6")]
-monster = NodePath("../the mosnter")
+monster = NodePath("../Monster A")
 
 [node name="Spawn 1" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 36.1086, 0, 61.0502)
@@ -183,7 +185,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65028, 0, 77.3587)
 [node name="Spawn 6" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6667, 0, -69.5544)
 
-[node name="the mosnter" type="CollisionShape3D" parent="Environment/Chunk A"]
+[node name="Monster A" type="CollisionShape3D" parent="Environment/Chunk A"]
 shape = SubResource("BoxShape3D_jxwrd")
 
 [node name="Chunk B" type="Area3D" parent="Environment"]
@@ -192,11 +194,65 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -259.016, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Chunk B"]
 shape = SubResource("BoxShape3D_vfrn5")
 
+[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk B" node_paths=PackedStringArray("code_manager", "enemy_spawns", "monster")]
+script = ExtResource("19_spkk5")
+code_manager = NodePath("../../../CodeManager")
+enemy_spawns = [NodePath("Spawn F"), NodePath("Spawn E"), NodePath("Spawn D"), NodePath("Spawn C"), NodePath("Spawn B"), NodePath("Spawn A")]
+monster = NodePath("../Monster B")
+
+[node name="Spawn F" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 36.1086, 0, 46.106)
+
+[node name="Spawn E" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -34.6521, 0, 76.0284)
+
+[node name="Spawn D" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 54.9512, 0, -34.205)
+
+[node name="Spawn C" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -5.70541, 0, 22.2928)
+
+[node name="Spawn B" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 24.4974, 0, -96.4083)
+
+[node name="Spawn A" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -48.3438, 0, -7.8077)
+
+[node name="Monster B" type="CollisionShape3D" parent="Environment/Chunk B"]
+shape = SubResource("BoxShape3D_jxwrd")
+
 [node name="Chunk C" type="Area3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -425.309, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Chunk C"]
 shape = SubResource("BoxShape3D_vfrn5")
+
+[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk C" node_paths=PackedStringArray("code_manager", "enemy_spawns", "monster")]
+script = ExtResource("20_yggoe")
+code_manager = NodePath("../../../CodeManager")
+enemy_spawns = [NodePath("Spawn <"), NodePath("Spawn >"), NodePath("Spawn +"), NodePath("Spawn -"), NodePath("Spawn ="), NodePath("Spawn ?")]
+monster = NodePath("../Monster C")
+
+[node name="Spawn <" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -59.9138, 0, -11.7241)
+
+[node name="Spawn >" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 43.7751, 0, 64.8095)
+
+[node name="Spawn +" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -6.55908, 0, -92.5094)
+
+[node name="Spawn -" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -64.9745, 0, 82.3918)
+
+[node name="Spawn =" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 24.4974, 0, 27.8296)
+
+[node name="Spawn ?" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 43.5728, 0, -58.4196)
+
+[node name="Monster C" type="CollisionShape3D" parent="Environment/Chunk C"]
+shape = SubResource("BoxShape3D_jxwrd")
 
 [node name="Player Boundary" type="Area3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -265.763, 0, 0)

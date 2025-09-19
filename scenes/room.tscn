@@ -31,8 +31,15 @@ sky_material = SubResource("ProceduralSkyMaterial_xwbdb")
 [sub_resource type="Environment" id="Environment_6tcb1"]
 background_mode = 1
 sky = SubResource("Sky_voycu")
-tonemap_mode = 2
+tonemap_mode = 3
+tonemap_exposure = 0.75
+tonemap_white = 2.0
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.168, 0.24, 0.168, 1)
+adjustment_enabled = true
+adjustment_brightness = 0.8
+adjustment_saturation = 0.75
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_katsu"]
 noise_type = 5
@@ -100,6 +107,7 @@ script = ExtResource("9_42v8c")
 
 [node name="code_display" type="Label3D" parent="CodeManager"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.93368, 2.70166, -1.42334)
+shaded = true
 modulate = Color(1, 0, 1, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"
@@ -134,5 +142,7 @@ grow_vertical = 2
 
 [node name="menu_screen" parent="CanvasLayer" instance=ExtResource("13_23wr2")]
 process_mode = 3
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 
 [connection signal="request_code_display" from="CanvasLayer/menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]

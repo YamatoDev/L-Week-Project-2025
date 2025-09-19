@@ -6,10 +6,10 @@ var toggle_cooldown := 500
 
 func _input(event):
 	if Input.is_action_pressed("toggle_sound"):
-		_try_toggle_camera_rotation()
+		_try_toggle_audio_panel()
 
 
-func _try_toggle_camera_rotation():
+func _try_toggle_audio_panel():
 	var now = Time.get_ticks_msec()
 	if now - last_toggle_time >= toggle_cooldown:
 		_toggle_panel()

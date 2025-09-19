@@ -12,7 +12,7 @@ var game_id
 var prev_id
 
 #codes here
-var id_array = ["1F<", "2E>", "3D+", "4C-", "5B=", "6A?"] #placeholders - replace with real codes
+var id_array = ["0F<", "1E>", "2D+", "3C-", "4B=", "5A?"] #placeholders - replace with real codes
 var temp_num
 
 func _find_code() -> void:
@@ -28,7 +28,7 @@ func _find_code() -> void:
 func _load_prev_id() -> String:
 	var saved_game_id = ConfigFile.new()
 	if saved_game_id.load("user://id_data.cfg") == OK:
-		return String (saved_game_id.get_value("game", "prev_id", -1))
+		return str(saved_game_id.get_value("game", "prev_id", ""))
 	print("Couldn't find ID_DATA.CFG! Returning -1")
 	return ""
 

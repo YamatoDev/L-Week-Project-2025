@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=29 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="1_bisa2"]
@@ -67,9 +67,6 @@ shader_parameter/pixel_strength = -2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vfrn5"]
 size = Vector3(150, 30, 200)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jxwrd"]
-size = Vector3(30, 30, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_katsu"]
 size = Vector3(600, 30, 300)
@@ -154,11 +151,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.4182, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Chunk A"]
 shape = SubResource("BoxShape3D_vfrn5")
 
-[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk A" node_paths=PackedStringArray("code_manager", "enemy_spawns", "monster")]
+[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk A" node_paths=PackedStringArray("code_manager")]
 script = ExtResource("18_jxwrd")
 code_manager = NodePath("../../../CodeManager")
-enemy_spawns = [NodePath("Spawn 1"), NodePath("Spawn 2"), NodePath("Spawn 3"), NodePath("Spawn 4"), NodePath("Spawn 5"), NodePath("Spawn 6")]
-monster = NodePath("../the mosnter")
 
 [node name="Spawn 1" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 36.1086, 0, 61.0502)
@@ -177,9 +172,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65028, 0, 77.3587)
 
 [node name="Spawn 6" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6667, 0, -69.5544)
-
-[node name="the mosnter" type="CollisionShape3D" parent="Environment/Chunk A"]
-shape = SubResource("BoxShape3D_jxwrd")
 
 [node name="Chunk B" type="Area3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -259.016, 0, 0)

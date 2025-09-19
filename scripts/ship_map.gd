@@ -14,7 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	steer_direction = Input.get_axis("steer_left", "steer_right")
 	
-	print(move_direction, steer_direction)
+	#print(move_direction, steer_direction)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_move_forward"):

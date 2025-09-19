@@ -1,4 +1,4 @@
-extends Camera3D
+class_name MainCamera extends Camera3D
 
 var mouse = Vector2()
 var flipped := false
@@ -6,6 +6,15 @@ var last_toggle_time := 0
 var toggle_cooldown := 1000   # milliseconds (0.3s)
 var target_y_rotation := -90.0
 var rotation_speed := 5.0 # degrees per frame, adjust for smoothness
+
+# Shaking part
+@onready var original_pos: Vector3 = global_position
+
+var shake_factor: float = 0
+var shake_duration: float = 0
+var shake_intensity: float = 0
+var shake_frequency: float = 0
+var shaking: bool = false
 
 func _input(event):
 	if event is InputEventMouse:
@@ -43,3 +52,29 @@ func _process(delta):
 		rotation_degrees.y = lerp(current_y, target_y_rotation, rotation_speed * delta)
 	else:
 		rotation_degrees.y = target_y_rotation
+
+	# Shaky part
+	if shaking:
+		if shake_duration > 0: shake_duration -= delta # Checks if theres still a duration left on shaking
+		elif shake_factor > 0: shake_factor -= delta # If not, reduce the shake factor until its zero
+		else: # Then shaking is now false if shake factor is now gone
+			shaking = false 
+			shake_intensity = 0
+			shake_frequency = 0
+			
+		# Actual logic of shaking
+		global_position = lerp(original_pos, original_pos + Vector3(
+			randf_range(-shake_intensity, shake_intensity),
+			randf_range(-shake_intensity, shake_intensity),
+			randf_range(-shake_intensity, shake_intensity)
+		) * shake_factor, shake_frequency)
+
+# Duration can be optional, along with the intensity and the frequency
+# Intensity idealy should be around 0.01 to 0.5, as any more than that is too intense
+# Frequency is how smooth the shaking is. 1 is rumbling, while 0.1 is a smooth shaking around.
+func shake(factor: float, intensity: float = 0.0, duration: float = 0.0, frequency: float = 1):
+	shake_factor = factor
+	shake_duration = duration
+	shake_intensity = intensity
+	shake_frequency = frequency
+	shaking = true

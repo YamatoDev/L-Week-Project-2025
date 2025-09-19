@@ -5,16 +5,22 @@ extends Node3D
 
 var move_direction := 0
 var steer_direction := 0.0
+var velocity := Vector3.ZERO
 
 func _ready() -> void:
 	print(radar_init)
 	ship.radar = radar_init
 	print(ship.radar)
-	
+
 func _process(delta: float) -> void:
 	steer_direction = Input.get_axis("steer_left", "steer_right")
 	
-	print(move_direction, steer_direction)
+func _physics_process(delta: float) -> void:
+	var target_velocity = Vector3(steer_direction * abs(move_direction), 0.0, -move_direction) * basis
+	var delta_velocity = target_velocity - velocity
+	
+	velocity += delta_velocity * delta
+	position += velocity * delta
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_move_forward"):

@@ -1,8 +1,11 @@
 class_name Ship extends Node3D
 
 var radar: Radar: set = _set_radar, get = _get_radar
+var camera: MainCamera
+
 @export var ray: Marker3D
 @export var rotation_speed: float
+@onready var area: Area3D = $Area3D
 
 var hit_bodies: Array = []
 
@@ -50,6 +53,9 @@ func ping_radar(body: Area3D) -> void:
 
 	pass
 
-func on_area_entered(area: Area3D) -> void:
-	if (area != $Area3D):
-		ping_radar(area)
+func on_area_entered(_area: Area3D) -> void:
+	if (_area != $Area3D):
+		ping_radar(_area)
+
+func ship_hit():
+	camera.shake(2, 0.10, 2)

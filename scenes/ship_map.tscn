@@ -36,11 +36,12 @@ shape = SubResource("BoxShape3D_ssgem")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ship/Area3D"]
 shape = SubResource("BoxShape3D_oson4")
 
-[node name="asteroid_spawner" type="Node3D" parent="." node_paths=PackedStringArray("area")]
+[node name="asteroid_spawner" type="Node3D" parent="." node_paths=PackedStringArray("area", "ship")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
 script = ExtResource("1_ltblv")
 area = NodePath("Area3D")
 asteroid_instance_path = ExtResource("2_n1vws")
+ship = NodePath("../ship")
 spawn_cd = 5.0
 
 [node name="Area3D" type="Area3D" parent="asteroid_spawner"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=37 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
@@ -22,6 +22,8 @@
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
 [ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
 [ext_resource type="PackedScene" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
+[ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scripts/chunk_B_spawn_logic.gd" id="19_spkk5"]
+[ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scripts/chunk_C_spawn_logic.gd" id="20_yggoe"]
 [ext_resource type="Script" uid="uid://bha5pmim08xci" path="res://scenes/monster.gd" id="22_kk8bn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
@@ -172,14 +174,6 @@ process_mode = 3
 process_mode = 3
 visible = false
 
-[node name="AudioPanel2" parent="CanvasLayer" instance=ExtResource("1_tk5fv")]
-process_mode = 3
-visible = false
-
-[node name="AudioPanel3" parent="CanvasLayer" instance=ExtResource("1_tk5fv")]
-process_mode = 3
-visible = false
-
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Chunk A" type="Area3D" parent="Environment"]
@@ -231,7 +225,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -259.016, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Chunk B"]
 shape = SubResource("BoxShape3D_vfrn5")
 
-[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk B"]
+[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk B" node_paths=PackedStringArray("code_manager", "enemy_spawns", "monster")]
+script = ExtResource("19_spkk5")
+code_manager = NodePath("../../../CodeManager")
+enemy_spawns = [NodePath("Spawn F"), NodePath("Spawn E"), NodePath("Spawn D"), NodePath("Spawn C"), NodePath("Spawn B"), NodePath("Spawn A")]
+monster = NodePath("../Area3D")
 
 [node name="Spawn F" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 36.1086, 0, 46.106)
@@ -251,8 +249,17 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 [node name="Spawn A" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -48.3438, 0, -7.8077)
 
-[node name="Monster B" type="CollisionShape3D" parent="Environment/Chunk B"]
+[node name="Area3D" type="Area3D" parent="Environment/Chunk B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14212, 7.6294e-06, 2.28522)
+script = ExtResource("22_kk8bn")
+monster = ExtResource("10_a5qmg")
+
+[node name="Monster B" type="CollisionShape3D" parent="Environment/Chunk B/Area3D"]
 shape = SubResource("BoxShape3D_jxwrd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Chunk B/Area3D"]
+transform = Transform3D(21.975, 0, 0, 0, 21.975, 0, 0, 0, 21.975, 0, 0, 0)
+mesh = SubResource("BoxMesh_2ulci")
 
 [node name="Chunk C" type="Area3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -425.309, 0, 0)
@@ -260,7 +267,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -425.309, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Chunk C"]
 shape = SubResource("BoxShape3D_vfrn5")
 
-[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk C"]
+[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk C" node_paths=PackedStringArray("code_manager", "enemy_spawns", "monster")]
+script = ExtResource("20_yggoe")
+code_manager = NodePath("../../../CodeManager")
+enemy_spawns = [NodePath("Spawn <"), NodePath("Spawn >"), NodePath("Spawn +"), NodePath("Spawn -"), NodePath("Spawn ="), NodePath("Spawn ?")]
+monster = NodePath("../Area3D")
 
 [node name="Spawn <" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -59.9138, 0, -11.7241)
@@ -280,8 +291,18 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 [node name="Spawn ?" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 43.5728, 0, -58.4196)
 
-[node name="Monster C" type="CollisionShape3D" parent="Environment/Chunk C"]
+[node name="Area3D" type="Area3D" parent="Environment/Chunk C"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723083, -1.52588e-05, 3.89188)
+script = ExtResource("22_kk8bn")
+monster = ExtResource("11_0tws2")
+
+[node name="Monster C" type="CollisionShape3D" parent="Environment/Chunk C/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.6294e-06, 0)
 shape = SubResource("BoxShape3D_jxwrd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Chunk C/Area3D"]
+transform = Transform3D(21.975, 0, 0, 0, 21.975, 0, 0, 0, 21.975, 0, 0, 0)
+mesh = SubResource("BoxMesh_2ulci")
 
 [node name="Player Boundary" type="Area3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -265.763, 0, 0)
@@ -293,3 +314,7 @@ shape = SubResource("BoxShape3D_katsu")
 [connection signal="request_code_display" from="CanvasLayer/menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]
 [connection signal="area_entered" from="Environment/Chunk A/Area3D" to="Environment/Chunk A/Area3D" method="_on_area_entered"]
 [connection signal="area_exited" from="Environment/Chunk A/Area3D" to="Environment/Chunk A/Area3D" method="_on_area_exited"]
+[connection signal="area_entered" from="Environment/Chunk B/Area3D" to="Environment/Chunk B/Area3D" method="_on_area_entered"]
+[connection signal="area_exited" from="Environment/Chunk B/Area3D" to="Environment/Chunk B/Area3D" method="_on_area_exited"]
+[connection signal="area_entered" from="Environment/Chunk C/Area3D" to="Environment/Chunk C/Area3D" method="_on_area_entered"]
+[connection signal="area_exited" from="Environment/Chunk C/Area3D" to="Environment/Chunk C/Area3D" method="_on_area_exited"]

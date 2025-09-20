@@ -3,7 +3,7 @@ extends Node3D
 var id_string
 @export var code_manager: Code_Manager
 @export var enemy_spawns: Array[Node3D] = []
-@export var monster: CollisionShape3D
+@export var monster: Area3D
 
 func _ready() -> void:
 	if GameIdManager.game_id == "" or GameIdManager.game_id == null:

@@ -8,7 +8,13 @@ class_name PhotographyScreen
 
 func _Activate() -> void:
 	sound.play()
-	_update_monster_data(randi_range(0, 10))
+	
+	for monster in monsters:
+		if monster.is_active:
+			_update_texture(monster)
+			return
+	
+	_play_normal_material(randi_range(0, 2))
 
 func _play_normal_material(number: int) -> void:
 	_update_texture(space[number])

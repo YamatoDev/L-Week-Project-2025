@@ -18,11 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="13_23wr2"]
 [ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="13_voycu"]
 [ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="14_vfrn5"]
-[ext_resource type="PackedScene" path="res://scenes/ship.tscn" id="18_2ftkj"]
+[ext_resource type="PackedScene" uid="uid://b6c62vs3ae24o" path="res://scenes/ship.tscn" id="18_2ftkj"]
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
 [ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
 [ext_resource type="PackedScene" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
-[ext_resource type="Script" path="res://scenes/monster.gd" id="22_kk8bn"]
+[ext_resource type="Script" uid="uid://bha5pmim08xci" path="res://scenes/monster.gd" id="22_kk8bn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
 height = 0.388062
@@ -215,6 +215,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6667, 0, -69.5544)
 [node name="Area3D" type="Area3D" parent="Environment/Chunk A"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45133, 3.8147e-06, 1.14261)
 script = ExtResource("22_kk8bn")
+monster = ExtResource("9_mc3m6")
 
 [node name="Monster A" type="CollisionShape3D" parent="Environment/Chunk A/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.432587)

@@ -38,7 +38,14 @@ sky_material = SubResource("ProceduralSkyMaterial_xwbdb")
 background_mode = 1
 sky = SubResource("Sky_voycu")
 tonemap_mode = 2
+tonemap_exposure = 0.75
+tonemap_white = 2.0
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.168, 0.24, 0.168, 1)
+adjustment_enabled = true
+adjustment_brightness = 0.8
+adjustment_saturation = 0.75
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_katsu"]
 noise_type = 5

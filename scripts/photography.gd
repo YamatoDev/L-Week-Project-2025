@@ -8,10 +8,16 @@ class_name PhotographyScreen
 
 func _Activate() -> void:
 	sound.play()
-	_update_monster_data(randi_range(0, 10))
+	
+	for monster in monsters:
+		if monster.is_active:
+			_update_texture(monster)
+			return
+	
+	_play_normal_material(randi_range(0, 2))
 
 func _play_normal_material(number: int) -> void:
-	space_screen.texture = space[number].texture
+	_update_texture(space[number])
 
 func _update_monster_data(args) -> void:
 	if typeof(args) == TYPE_INT:
@@ -19,12 +25,18 @@ func _update_monster_data(args) -> void:
 			_play_normal_material(randi_range(0, 2))
 			return
 		
-		space_screen.texture = monsters[args].texture
+		_update_texture(monsters[args])
 	
 	elif typeof(args) == TYPE_STRING:
 		for monster in monsters:
 			if monster.name == args:
-				space_screen.texture = monster.texture
+				_update_texture(monster)
 	
 	else:
 		print("not intended")
+
+func _update_texture(textureData: TextureData):
+	if textureData.is_active:
+		space_screen.texture = textureData.texture
+	else:
+		_play_normal_material(randi_range(0, 2))

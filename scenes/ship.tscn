@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ufvd4undc2f6"]
+[gd_scene load_steps=7 format=3 uid="uid://b6c62vs3ae24o"]
 
 [ext_resource type="Script" uid="uid://b4ffmk5mwkjvv" path="res://scripts/ship.gd" id="1_l3rv8"]
 
@@ -11,7 +11,11 @@ size = Vector3(1, 1, 1.0108)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ssgem"]
 points = PackedVector3Array(0, 0, 0, 3, -3, 6, -3, -3, 6, 3, 3, 6, -3, 3, 6)
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_q631a"]
+albedo_color = Color(1.54018e-06, 0.681358, 0.827812, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_q631a"]
+material = SubResource("ORMMaterial3D_q631a")
 
 [node name="ship" type="Node3D" node_paths=PackedStringArray("ray")]
 script = ExtResource("1_l3rv8")

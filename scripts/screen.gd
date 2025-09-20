@@ -24,7 +24,6 @@ func _update_monsters() -> void:
 		return
 
 	_update_monster_data(randi_range(0, 5))
-	#_update_monster_data("Golshi")
 	
 	# Find the first monster marked active and set its material
 	for monster in monsters:

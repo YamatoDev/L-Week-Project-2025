@@ -189,6 +189,10 @@ visible = false
 process_mode = 3
 visible = false
 
+[node name="AudioPanel2" parent="CanvasLayer" instance=ExtResource("1_tk5fv")]
+process_mode = 3
+visible = false
+
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Chunk A" type="Area3D" parent="Environment"]

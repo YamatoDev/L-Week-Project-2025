@@ -2,6 +2,7 @@ class_name Ship extends Node3D
 
 @export var radar: Radar: set = _set_radar, get = _get_radar
 @export var camera: MainCamera
+@export var move_speed: float
 
 @export var ray: Marker3D
 @export var rotation_speed: float
@@ -29,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	ray.rotate_y(-deg_to_rad(rotation_speed * delta))
 	radar.rotate_sweep(-ray.rotation_degrees.y) # ???????????
 
-	var target_velocity = Vector3(steer_direction * abs(move_direction) * 2.5, 0.0, -move_direction * 2.5) * basis
+	var target_velocity = Vector3(steer_direction * abs(move_direction) * move_speed, 0.0, -move_direction * move_speed) * basis
 	var delta_velocity = target_velocity - velocity
 	
 	velocity += delta_velocity * delta

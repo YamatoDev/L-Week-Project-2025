@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=34 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="PackedScene" uid="uid://bw03wvv367lsg" path="res://models/Spaceship.blend" id="1_dynfe"]
@@ -21,8 +21,8 @@
 [ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="14_vfrn5"]
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
 [ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
-[ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scenes/chunk_B_spawn_logic.gd" id="19_spkk5"]
-[ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scenes/chunk_C_spawn_logic.gd" id="20_yggoe"]
+[ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scripts/chunk_B_spawn_logic.gd" id="19_spkk5"]
+[ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scripts/chunk_C_spawn_logic.gd" id="20_yggoe"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
 height = 0.388062
@@ -151,6 +151,10 @@ grow_vertical = 2
 
 [node name="menu_screen" parent="CanvasLayer" instance=ExtResource("13_23wr2")]
 process_mode = 3
+
+[node name="AudioPanel" parent="CanvasLayer" instance=ExtResource("1_tk5fv")]
+process_mode = 3
+visible = false
 
 [node name="Environment" type="Node3D" parent="."]
 

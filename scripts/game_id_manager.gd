@@ -11,8 +11,11 @@ var game_id
 #holds previous GAME_ID to avoid repetition per game
 var prev_id
 
+#to verify monster spawns
+signal id_ready(game_id: String)
+
 #codes here
-var id_array = ["0F<", "1E>", "2D+", "3C-", "4B=", "5A?"] #placeholders - replace with real codes
+var id_array = ["0F<", "1E>", "2D+", "3C-", "4B=", "5A?"]
 var temp_num
 
 func _find_code() -> void:
@@ -23,6 +26,7 @@ func _find_code() -> void:
 	print("Previous game_id: ", prev_id)
 	#stores current GAME_ID to USER://ID_DATA.CFG
 	_save_prev_id(game_id)
+	emit_signal("id_ready", game_id)
 
 #loads PREV_ID. If ID_DATA.CFG doesn't exist, this won't do anything
 func _load_prev_id() -> String:

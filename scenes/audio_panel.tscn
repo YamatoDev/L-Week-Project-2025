@@ -74,6 +74,7 @@ script = ExtResource("1_0or1g")
 bus_name = "sfx"
 
 [node name="Leave" type="Button" parent="VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 42
 text = "LEAVE"

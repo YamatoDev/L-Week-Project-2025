@@ -7,4 +7,5 @@
 script = ExtResource("1_01nok")
 name = "Space02"
 texture = ExtResource("2_01nok")
+is_active = true
 metadata/_custom_type_script = "uid://dcw06i4v03dp"

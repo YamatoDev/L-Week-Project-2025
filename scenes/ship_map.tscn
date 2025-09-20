@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://f4uog51yyhq0"]
+[gd_scene load_steps=9 format=3 uid="uid://f4uog51yyhq0"]
 
 [ext_resource type="Script" uid="uid://o3nr6uliv6up" path="res://scripts/asteroid_spawner.gd" id="1_ltblv"]
 [ext_resource type="Script" uid="uid://dhsbcu5crqaes" path="res://scripts/ship_map.gd" id="1_ssgem"]
@@ -13,6 +13,8 @@ size = Vector3(1, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ltblv"]
 size = Vector3(23, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ssgem"]
 
 [node name="ShipMap" type="Node3D" node_paths=PackedStringArray("ship")]
 script = ExtResource("1_ssgem")
@@ -36,16 +38,20 @@ shape = SubResource("BoxShape3D_ssgem")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ship/Area3D"]
 shape = SubResource("BoxShape3D_oson4")
 
-[node name="asteroid_spawner" type="Node3D" parent="." node_paths=PackedStringArray("area")]
+[node name="asteroid_spawner" type="Node3D" parent="." node_paths=PackedStringArray("area", "ship")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
 script = ExtResource("1_ltblv")
 area = NodePath("Area3D")
 asteroid_instance_path = ExtResource("2_n1vws")
+ship = NodePath("../ship")
 spawn_cd = 5.0
 
 [node name="Area3D" type="Area3D" parent="asteroid_spawner"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="asteroid_spawner/Area3D"]
 shape = SubResource("BoxShape3D_ltblv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ssgem")
 
 [connection signal="area_entered" from="ship/Radar/Area3D" to="ship" method="on_area_entered"]

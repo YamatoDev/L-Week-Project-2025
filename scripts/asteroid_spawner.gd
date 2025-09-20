@@ -2,6 +2,7 @@ extends Node3D
 
 @export var area: Area3D
 @export var asteroid_instance_path: PackedScene
+@export var ship: Ship
 
 @onready var shape: Shape3D = area.get_node("CollisionShape3D").shape
 var shape_min: Vector3
@@ -21,14 +22,15 @@ func _process(delta: float) -> void:
 
 	if (spawn_cd_left <= 0):
 		var new_asteroid = asteroid_instance_path.instantiate()
-		new_asteroid.set_position(Vector3(
+		new_asteroid.set_position(global_position + Vector3(
 			randf_range(shape_min.x, shape_max.x), 
 			randf_range(shape_min.y, shape_max.y),
 			randf_range(shape_min.z, shape_max.z)
 		))
+		new_asteroid.set_rotation_degrees(global_rotation_degrees)
 
-		new_asteroid.set_rotation_degrees(Vector3(0, 0, 0))
-
-		add_child(new_asteroid)
+		new_asteroid.ship = ship
+		
+		get_tree().root.add_child(new_asteroid)
 		
 		spawn_cd_left = spawn_cd

@@ -11,8 +11,11 @@ var game_id
 #holds previous GAME_ID to avoid repetition per game
 var prev_id
 
+#to verify monster spawns
+signal id_ready(game_id: String)
+
 #codes here
-var id_array = [123, 456, 789, 691, 420, 360] #placeholders - replace with real codes
+var id_array = ["0F<", "1E>", "2D+", "3C-", "4B=", "5A?"]
 var temp_num
 
 func _find_code() -> void:
@@ -23,17 +26,18 @@ func _find_code() -> void:
 	print("Previous game_id: ", prev_id)
 	#stores current GAME_ID to USER://ID_DATA.CFG
 	_save_prev_id(game_id)
+	emit_signal("id_ready", game_id)
 
 #loads PREV_ID. If ID_DATA.CFG doesn't exist, this won't do anything
-func _load_prev_id() -> int:
+func _load_prev_id() -> String:
 	var saved_game_id = ConfigFile.new()
 	if saved_game_id.load("user://id_data.cfg") == OK:
-		return int (saved_game_id.get_value("game", "prev_id", -1))
+		return str(saved_game_id.get_value("game", "prev_id", ""))
 	print("Couldn't find ID_DATA.CFG! Returning -1")
-	return -1
+	return ""
 
 #repeats until unique id is made
-func _pick_unique_id(previous: int) -> int:
+func _pick_unique_id(previous: String) -> String:
 	temp_num = randi_range(0, id_array.size() - 1)
 	var temp_id = id_array[temp_num]
 	while temp_id == previous:
@@ -43,7 +47,7 @@ func _pick_unique_id(previous: int) -> int:
 	return temp_id;
 
 #saves current GAME_ID. Makes a new ID_DATA.CFG if cfg doesn't already exist
-func _save_prev_id(id_to_save: int) -> void:
+func _save_prev_id(id_to_save: String) -> void:
 	var saved_game_id = ConfigFile.new()
 	saved_game_id.set_value("game", "prev_id", id_to_save)
 	saved_game_id.save("user://id_data.cfg")

@@ -18,7 +18,7 @@
 [ext_resource type="Resource" uid="uid://c6vac4o12ivw6" path="res://TextureData/space1.tres" id="13_jgc7q"]
 [ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="14_hrjob"]
 [ext_resource type="Resource" uid="uid://ccrqnu8lw0lq1" path="res://TextureData/space2.tres" id="14_k81o3"]
-[ext_resource type="Script" path="res://scripts/flickering_light.gd" id="15_e0mr4"]
+[ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="15_e0mr4"]
 [ext_resource type="Resource" uid="uid://blmn5eqr3hwcp" path="res://TextureData/space3.tres" id="15_wefvi"]
 [ext_resource type="Resource" uid="uid://bywowwmgdrj22" path="res://TextureData/monster1.tres" id="16_fxany"]
 [ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="16_nxmyo"]

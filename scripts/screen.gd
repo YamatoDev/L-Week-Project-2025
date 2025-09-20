@@ -1,6 +1,7 @@
 extends CSGBox3D
 class_name SpaceScreen
 
+@export var sound: AudioStreamPlayer3D
 @export var space_screen: CSGBox3D
 @export var normal_screen_material: Material
 @export var monsters: Array[MonsterData] = []
@@ -13,6 +14,7 @@ func _ready() -> void:
 
 
 func _Activate() -> void:
+	sound.play()
 	is_active = !is_active
 	_update_monsters()
 

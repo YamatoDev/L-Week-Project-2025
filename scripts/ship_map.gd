@@ -2,13 +2,13 @@ extends Node3D
 
 @export var radar_init: Radar
 @export var ship: Ship
+@export var camera_init: Camera3D
 
 var move_direction := 0
 var steer_direction := 0.0
 var velocity := Vector3.ZERO
 
 func _ready() -> void:
-	print(radar_init)
 	ship.radar = radar_init
 	print(ship.radar)
 

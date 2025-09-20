@@ -10,10 +10,13 @@ func rotate_sweep(rotation) -> void:
 	radar_sweep.rotation_degrees = rotation
 
 # offset
-func add_ping(x: float, y: float) -> void:
+func add_ping(x: float, y: float, enemy: bool = false) -> void:
 	var ping = TextureRect.new()
-
-	ping.texture = load("res://textures/radar_ping.png")
+	
+	
+	if enemy: ping.texture = load("res://textures/radar_ping_enemy.png")
+	else: ping.texture = load("res://textures/radar_ping.png")
+		
 	ping.name = "RadarPing"
 	ping.size = Vector2(16, 16)
 

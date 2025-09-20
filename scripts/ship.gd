@@ -1,11 +1,15 @@
 class_name Ship extends Node3D
 
-var radar: Radar: set = _set_radar, get = _get_radar
-var camera: MainCamera
+@export var radar: Radar: set = _set_radar, get = _get_radar
+@export var camera: MainCamera
 
 @export var ray: Marker3D
 @export var rotation_speed: float
 @onready var area: Area3D = $Area3D
+
+var move_direction := 0
+var steer_direction := 0.0
+var velocity := Vector3.ZERO
 
 var hit_bodies: Array = []
 
@@ -25,13 +29,22 @@ func _physics_process(delta: float) -> void:
 	ray.rotate_y(-deg_to_rad(rotation_speed * delta))
 	radar.rotate_sweep(-ray.rotation_degrees.y) # ???????????
 
-# func _process(_delta: float) -> void:f
-# 	if (ray.is_colliding()):
-# 		var body: Area3D = ray.get_collider()
-# 		if (!hit_bodies.has(body)):
-# 			ping_radar(body)
-			
-# 	pass
+	var target_velocity = Vector3(steer_direction * abs(move_direction), 0.0, -move_direction) * basis
+	var delta_velocity = target_velocity - velocity
+	
+	velocity += delta_velocity * delta
+	position += velocity * delta
+
+func _process(_delta: float) -> void:
+	steer_direction = Input.get_axis("steer_left", "steer_right")
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_move_forward"):
+		print(1 if move_direction != 1 else 0)
+		move_direction = 1 if move_direction != 1 else 0
+	if event.is_action_pressed("toggle_move_backward"):
+		print(-1 if move_direction != -1 else 0)
+		move_direction = -1 if move_direction != -1 else 0
 
 func ping_radar(body: Area3D) -> void:
 	hit_bodies.push_back(body)
@@ -58,4 +71,5 @@ func on_area_entered(_area: Area3D) -> void:
 		ping_radar(_area)
 
 func ship_hit():
+	global_position = global_position + Vector3(randf_range(-4, 4), 0, randf_range(-4, 4))
 	camera.shake(2, 0.10, 2)

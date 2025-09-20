@@ -1,12 +1,12 @@
-[gd_scene load_steps=34 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=33 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
-[ext_resource type="PackedScene" uid="uid://bw03wvv367lsg" path="res://models/Spaceship.blend" id="1_dynfe"]
 [ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
+[ext_resource type="PackedScene" uid="uid://uxkp2m7023tk" path="res://scenes/spaceship_2.tscn" id="1_vfrn5"]
 [ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/button.wav" id="3_katsu"]
-[ext_resource type="PackedScene" uid="uid://da8i0dv3phi4m" path="res://scenes/photography.tscn" id="4_jxwrd"]
+[ext_resource type="PackedScene" path="res://scenes/photography.tscn" id="4_jxwrd"]
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="4_v5vuv"]
-[ext_resource type="Script" uid="uid://dcw06i4v03dp" path="res://scripts/texture_data.gd" id="5_spkk5"]
+[ext_resource type="Script" path="res://scripts/texture_data.gd" id="5_spkk5"]
 [ext_resource type="Resource" uid="uid://c6vac4o12ivw6" path="res://TextureData/space1.tres" id="6_yggoe"]
 [ext_resource type="Resource" uid="uid://ccrqnu8lw0lq1" path="res://TextureData/space2.tres" id="7_2ulci"]
 [ext_resource type="Resource" uid="uid://blmn5eqr3hwcp" path="res://TextureData/space3.tres" id="8_kk8bn"]
@@ -15,7 +15,6 @@
 [ext_resource type="Resource" uid="uid://cvjdwti20hg6r" path="res://TextureData/monster2.tres" id="10_a5qmg"]
 [ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
 [ext_resource type="Resource" uid="uid://boq3h7yaym8pe" path="res://TextureData/monster3.tres" id="11_0tws2"]
-[ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="11_xorjj"]
 [ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="13_23wr2"]
 [ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="13_voycu"]
 [ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="14_vfrn5"]
@@ -95,13 +94,22 @@ spaceScreen = NodePath("../Screen")
 transform = Transform3D(1, 1.82539e-07, 9.26442e-22, -1.82539e-07, 1, 1.27055e-21, -1.3017e-21, 1.69407e-21, 1, 0, 0.486145, 0)
 shape = SubResource("CylinderShape3D_v5vuv")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Spaceship2/Node3D"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Spaceship3/Node3D"]
 stream = ExtResource("3_katsu")
 bus = &"sfx"
 
-[node name="Screen" parent="Spaceship2" node_paths=PackedStringArray("sound") instance=ExtResource("4_jxwrd")]
+[node name="Screen" parent="Spaceship3" node_paths=PackedStringArray("sound") instance=ExtResource("4_jxwrd")]
 transform = Transform3D(-2.665, 0, -1.50996e-07, 0, 1.195, 0, 4.02404e-07, 0, -1, 0, 2.03277, 1.84)
 sound = NodePath("../Node3D/AudioStreamPlayer3D")
+space = Array[ExtResource("5_spkk5")]([ExtResource("6_yggoe"), ExtResource("7_2ulci"), ExtResource("8_kk8bn")])
+monsters = Array[ExtResource("5_spkk5")]([ExtResource("9_mc3m6"), ExtResource("10_a5qmg"), ExtResource("11_0tws2")])
+
+[node name="Spaceship2_Node3D#AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_katsu")
+bus = &"sfx"
+
+[node name="Spaceship2#Screen" parent="." instance=ExtResource("4_jxwrd")]
+transform = Transform3D(-2.665, 0, -1.50996e-07, 0, 1.195, 0, 4.02404e-07, 0, -1, 0, 2.03277, 1.84)
 space = Array[ExtResource("5_spkk5")]([ExtResource("6_yggoe"), ExtResource("7_2ulci"), ExtResource("8_kk8bn")])
 monsters = Array[ExtResource("5_spkk5")]([ExtResource("9_mc3m6"), ExtResource("10_a5qmg"), ExtResource("11_0tws2")])
 
@@ -117,7 +125,8 @@ script = ExtResource("1_4o3f6")
 script = ExtResource("9_42v8c")
 
 [node name="code_display" type="Label3D" parent="CodeManager"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.93368, 2.70166, -1.42334)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.9329, 2.6953, -1.42749)
+shaded = true
 modulate = Color(1, 0, 1, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"
@@ -125,10 +134,16 @@ text = "CODE"
 [node name="radar" parent="." instance=ExtResource("10_mb7s7")]
 transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -2.04404, 2.72646, 0.0671765)
 
-[node name="ShipMap" parent="." node_paths=PackedStringArray("radar_init", "camera_init") instance=ExtResource("11_xorjj")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -10, 0)
-radar_init = NodePath("../radar")
-camera_init = NodePath("../Camera3D")
+[node name="ship" parent="." node_paths=PackedStringArray("radar", "camera") instance=ExtResource("18_2ftkj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -4, 0)
+radar = NodePath("../radar")
+camera = NodePath("../Camera3D")
+rotation_speed = 180.0
+
+[node name="asteroid_spawner" parent="ship" node_paths=PackedStringArray("ship") instance=ExtResource("19_ny2il")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.27299e-06, 0, 52)
+ship = NodePath("..")
+spawn_cd = 2.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539071, 3.68648, 0)
@@ -155,6 +170,14 @@ grow_vertical = 2
 process_mode = 3
 
 [node name="AudioPanel" parent="CanvasLayer" instance=ExtResource("1_tk5fv")]
+process_mode = 3
+visible = false
+
+[node name="AudioPanel2" parent="CanvasLayer" instance=ExtResource("1_tk5fv")]
+process_mode = 3
+visible = false
+
+[node name="AudioPanel3" parent="CanvasLayer" instance=ExtResource("1_tk5fv")]
 process_mode = 3
 visible = false
 
@@ -199,11 +222,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -259.016, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Chunk B"]
 shape = SubResource("BoxShape3D_vfrn5")
 
-[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk B" node_paths=PackedStringArray("code_manager", "enemy_spawns", "monster")]
-script = ExtResource("19_spkk5")
-code_manager = NodePath("../../../CodeManager")
-enemy_spawns = [NodePath("Spawn F"), NodePath("Spawn E"), NodePath("Spawn D"), NodePath("Spawn C"), NodePath("Spawn B"), NodePath("Spawn A")]
-monster = NodePath("../Monster B")
+[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk B"]
 
 [node name="Spawn F" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 36.1086, 0, 46.106)
@@ -232,11 +251,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -425.309, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Chunk C"]
 shape = SubResource("BoxShape3D_vfrn5")
 
-[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk C" node_paths=PackedStringArray("code_manager", "enemy_spawns", "monster")]
-script = ExtResource("20_yggoe")
-code_manager = NodePath("../../../CodeManager")
-enemy_spawns = [NodePath("Spawn <"), NodePath("Spawn >"), NodePath("Spawn +"), NodePath("Spawn -"), NodePath("Spawn ="), NodePath("Spawn ?")]
-monster = NodePath("../Monster C")
+[node name="EnemySpawnContainer" type="Node3D" parent="Environment/Chunk C"]
 
 [node name="Spawn <" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -59.9138, 0, -11.7241)
@@ -267,4 +282,3 @@ script = ExtResource("18_katsu")
 shape = SubResource("BoxShape3D_katsu")
 
 [connection signal="request_code_display" from="CanvasLayer/menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]
-[connection signal="body_exited" from="Environment/Player Boundary" to="Spaceship2/Node3D" method="_on_player_boundary_body_exited"]

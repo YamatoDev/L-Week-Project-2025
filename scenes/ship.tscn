@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://ufvd4undc2f6"]
+
+[ext_resource type="Script" uid="uid://b4ffmk5mwkjvv" path="res://scripts/ship.gd" id="1_l3rv8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ssgem"]
+size = Vector3(8, 1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oson4"]
+size = Vector3(1, 1, 1.0108)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ssgem"]
+points = PackedVector3Array(0, 0, 0, 3, -3, 6, -3, -3, 6, 3, 3, 6, -3, 3, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q631a"]
+
+[node name="ship" type="Node3D" node_paths=PackedStringArray("ray")]
+script = ExtResource("1_l3rv8")
+ray = NodePath("Radar")
+rotation_speed = 135.0
+
+[node name="Radar" type="Marker3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="Radar"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Radar/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+shape = SubResource("BoxShape3D_ssgem")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00253296)
+shape = SubResource("BoxShape3D_oson4")
+
+[node name="MonsterCheck" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MonsterCheck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("ConvexPolygonShape3D_ssgem")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_q631a")
+
+[connection signal="area_entered" from="Radar/Area3D" to="." method="on_area_entered"]

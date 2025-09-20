@@ -29,8 +29,6 @@
 [ext_resource type="Script" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
 [ext_resource type="Script" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
 [ext_resource type="PackedScene" uid="uid://c1xokn2kunm3" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
-[ext_resource type="Script" path="res://scenes/chunk_B_spawn_logic.gd" id="19_spkk5"]
-[ext_resource type="Script" path="res://scenes/chunk_C_spawn_logic.gd" id="20_yggoe"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
 height = 0.388062

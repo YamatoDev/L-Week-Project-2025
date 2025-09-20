@@ -4,7 +4,11 @@ class_name PhotographyScreen
 @export var sound: AudioStreamPlayer3D
 @export var space: Array[TextureData] = []
 @export var monsters: Array[TextureData] = []
+@export var score_display: Label3D
+@export var congrats: Control
 @onready var space_screen:= $SubViewport/textureholder
+
+var score: int = 0;
 
 func _Activate() -> void:
 	sound.play()
@@ -38,5 +42,16 @@ func _update_monster_data(args) -> void:
 func _update_texture(textureData: TextureData):
 	if textureData.is_active:
 		space_screen.texture = textureData.texture
+		if (!textureData.picture_taken):
+			print("new pic")
+			textureData.picture_taken = true
+			_update_text()
 	else:
 		_play_normal_material(randi_range(0, 2))
+
+func _update_text() -> void:
+	score+=1
+	score_display.text = str(score) + "/3"
+	
+	if score >= 3:
+		congrats.visible = true

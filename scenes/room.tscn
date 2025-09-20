@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
-[ext_resource type="PackedScene" path="res://scenes/spaceship_2.tscn" id="1_vfrn5"]
+[ext_resource type="PackedScene" uid="uid://uxkp2m7023tk" path="res://scenes/spaceship_2.tscn" id="1_vfrn5"]
 [ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/button.wav" id="3_katsu"]
 [ext_resource type="PackedScene" uid="uid://da8i0dv3phi4m" path="res://scenes/photography.tscn" id="4_jxwrd"]
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="4_v5vuv"]
@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b6c62vs3ae24o" path="res://scenes/ship.tscn" id="18_2ftkj"]
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
 [ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
-[ext_resource type="PackedScene" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
+[ext_resource type="PackedScene" uid="uid://c1xokn2kunm3" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
 [ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scripts/chunk_B_spawn_logic.gd" id="19_spkk5"]
 [ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scripts/chunk_C_spawn_logic.gd" id="20_yggoe"]
 [ext_resource type="Script" uid="uid://bha5pmim08xci" path="res://scenes/monster.gd" id="22_kk8bn"]

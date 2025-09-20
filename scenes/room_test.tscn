@@ -72,7 +72,7 @@ shader_parameter/roll_speed = 3.8e-07
 shader_parameter/scan_line_strength = -8.0
 shader_parameter/pixel_strength = -2.0
 
-[node name="room" type="Node3D"]
+[node name="room2" type="Node3D"]
 process_mode = 1
 
 [node name="Spaceship2" parent="." instance=ExtResource("1_kthgp")]

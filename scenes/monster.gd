@@ -1,7 +1,13 @@
 extends Area3D
 
 @export var monster: TextureData
+@export var time_limit: float
+@export var camera: MainCamera
+@export var ship: Ship
+@export var return_point: Node3D
+
 var ship_inside := false
+var timer : float
 
 func _on_area_entered(body):
 	print("Entered: " + body.name)
@@ -16,3 +22,18 @@ func _on_area_exited(body):
 		print("Monster Not Active")
 		monster.is_active = false
 		ship_inside = false
+
+func _process(delta: float) -> void:
+	if ship_inside:
+		timer += delta
+		if timer >= time_limit:
+			print("Caught")
+			_caught_player()
+			timer = 0
+
+func _caught_player() -> void:
+	camera.shake(2, 0.10, 2)
+	teleport()
+	
+func teleport():
+	ship.global_position = return_point.global_position

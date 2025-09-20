@@ -82,7 +82,7 @@ size = Vector3(600, 30, 300)
 [node name="room" type="Node3D"]
 process_mode = 1
 
-[node name="Spaceship2" parent="." instance=ExtResource("1_dynfe")]
+[node name="Spaceship2" parent="." instance=ExtResource("1_vfrn5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04626, 0, 0.075446)
 
 [node name="Node3D" type="StaticBody3D" parent="Spaceship2" node_paths=PackedStringArray("spaceScreen")]

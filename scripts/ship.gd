@@ -40,8 +40,10 @@ func _process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_move_forward"):
+		print(1 if move_direction != 1 else 0)
 		move_direction = 1 if move_direction != 1 else 0
 	if event.is_action_pressed("toggle_move_backward"):
+		print(-1 if move_direction != -1 else 0)
 		move_direction = -1 if move_direction != -1 else 0
 
 func ping_radar(body: Area3D) -> void:

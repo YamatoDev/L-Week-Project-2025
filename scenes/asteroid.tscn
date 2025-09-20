@@ -13,8 +13,8 @@ albedo_texture = ExtResource("2_6mo6b")
 
 [node name="asteroid" type="Node3D"]
 script = ExtResource("1_akfqu")
-speed = 0.5
-expiry = 240.0
+speed = 0.25
+expiry = 120.0
 
 [node name="Area3D" type="Area3D" parent="."]
 

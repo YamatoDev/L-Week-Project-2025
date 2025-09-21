@@ -61,6 +61,12 @@ func _process(delta):
 		rotation_degrees.y = lerp(current_y, target_y_rotation, rotation_speed * delta)
 	else:
 		rotation_degrees.y = target_y_rotation
+		
+	# Breathing
+	var time = Time.get_ticks_msec() * 0.00025 * PI
+	
+	rotation_degrees.y += cos(time * 0.5) * 0.125
+	rotation_degrees.x = sin(time) * 0.5
 
 	# Shaky part
 	if shaking:
@@ -77,6 +83,9 @@ func _process(delta):
 			randf_range(-shake_intensity, shake_intensity),
 			randf_range(-shake_intensity, shake_intensity)
 		) * shake_factor, shake_frequency)
+		
+		rotation_degrees.z = randf_range(-shake_intensity, shake_intensity) * shake_factor * shake_frequency * 30
+		rotation_degrees.x = randf_range(-shake_intensity, shake_intensity) * shake_factor * shake_frequency * 30
 
 # Duration can be optional, along with the intensity and the frequency
 # Intensity idealy should be around 0.01 to 0.5, as any more than that is too intense
@@ -87,3 +96,6 @@ func shake(factor: float, intensity: float = 0.0, duration: float = 0.0, frequen
 	shake_intensity = intensity
 	shake_frequency = frequency
 	shaking = true
+
+func _ready() -> void:
+	shake(1.0, 0.5, 1.0, 0.25)

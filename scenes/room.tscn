@@ -135,7 +135,7 @@ space = Array[ExtResource("5_spkk5")]([ExtResource("6_yggoe"), ExtResource("7_2u
 monsters = Array[ExtResource("5_spkk5")]([ExtResource("9_mc3m6"), ExtResource("10_a5qmg"), ExtResource("11_0tws2")])
 score_display = NodePath("../../score_display")
 congrats = NodePath("../../CanvasLayer/Congrats")
-location_manager = NodePatxnager")
+location_manager = NodePath("../../LocationManager")
 
 [node name="Audio" type="Node3D" parent="."]
 
@@ -170,6 +170,14 @@ bus = &"sfx"
 stream = ExtResource("16_2cm04")
 bus = &"sfx"
 
+[node name="crash" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("15_1wmww")
+bus = &"sfx"
+
+[node name="alarm" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("16_ftego")
+bus = &"sfx"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6tcb1")
 
@@ -192,7 +200,7 @@ script = ExtResource("9_42v8c")
 [node name="code_display" type="Label3D" parent="CodeManager"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.9329, 2.6953, -1.42749)
 shaded = true
-modulate = Color(1, 0, 1, 1)
+modulate = Color(0, 0.729412, 0.560784, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"
 
@@ -390,6 +398,7 @@ transform = Transform3D(21.975, 0, 0, 0, 21.975, 0, 0, 0, 21.975, 0, 0, 0)
 mesh = SubResource("BoxMesh_2ulci")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk B/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55545, 1.04766, 1.01097)
 stream = ExtResource("32_c4f3b")
 volume_db = 1.0
 autoplay = true

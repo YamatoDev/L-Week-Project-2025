@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6c62vs3ae24o"]
+[gd_scene load_steps=8 format=3 uid="uid://b6c62vs3ae24o"]
 
 [ext_resource type="Script" uid="uid://b4ffmk5mwkjvv" path="res://scripts/ship.gd" id="1_l3rv8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ssgem"]
-size = Vector3(8, 1, 0.2)
+size = Vector3(15, 1, 0.2)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q631a"]
+radius = 0.1
+height = 15.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oson4"]
 size = Vector3(1, 1, 1.0108)
@@ -27,8 +31,12 @@ rotation_speed = 135.0
 [node name="Area3D" type="Area3D" parent="Radar"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Radar/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
 shape = SubResource("BoxShape3D_ssgem")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Radar/Area3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 7.6, 0, 0)
+mesh = SubResource("CapsuleMesh_q631a")
 
 [node name="Area3D" type="Area3D" parent="."]
 

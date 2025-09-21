@@ -15,6 +15,7 @@ func _on_area_entered(body):
 		print("Monster Active")
 		monster.is_active = true
 		ship_inside = true
+		ship.monster_active = true
 
 func _on_area_exited(body):
 	print("Exited: " + body.name)
@@ -22,6 +23,7 @@ func _on_area_exited(body):
 		print("Monster Not Active")
 		monster.is_active = false
 		ship_inside = false
+		ship.monster_active = false
 
 func _process(delta: float) -> void:
 	if ship_inside:

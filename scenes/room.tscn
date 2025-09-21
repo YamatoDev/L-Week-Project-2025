@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
-[ext_resource type="PackedScene" path="res://scenes/spaceship_2.tscn" id="1_vfrn5"]
+[ext_resource type="PackedScene" uid="uid://uxkp2m7023tk" path="res://scenes/spaceship_2.tscn" id="1_vfrn5"]
 [ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/button.wav" id="3_katsu"]
 [ext_resource type="PackedScene" uid="uid://da8i0dv3phi4m" path="res://scenes/photography.tscn" id="4_jxwrd"]
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="4_v5vuv"]
@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
 [ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
 [ext_resource type="PackedScene" uid="uid://chjhoolg7ldl8" path="res://scenes/congrats.tscn" id="19_0tws2"]
-[ext_resource type="PackedScene" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
+[ext_resource type="PackedScene" uid="uid://c1xokn2kunm3" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
 [ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scripts/chunk_B_spawn_logic.gd" id="19_spkk5"]
 [ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scripts/chunk_C_spawn_logic.gd" id="20_yggoe"]
 [ext_resource type="Script" uid="uid://bha5pmim08xci" path="res://scenes/monster.gd" id="22_kk8bn"]
@@ -86,6 +86,7 @@ size = Vector3(150, 30, 200)
 size = Vector3(30, 30, 31.546)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2ulci"]
+size = Vector3(1.35, 1.35, 1.35)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_katsu"]
 size = Vector3(600, 30, 300)
@@ -146,12 +147,13 @@ text = "CODE"
 [node name="radar" parent="." instance=ExtResource("10_mb7s7")]
 transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -2.04404, 2.72646, 0.0671765)
 
-[node name="ship" parent="." node_paths=PackedStringArray("radar", "camera") instance=ExtResource("18_2ftkj")]
+[node name="ship" parent="." node_paths=PackedStringArray("radar", "camera", "red_light") instance=ExtResource("18_2ftkj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -4, 0)
 radar = NodePath("../radar")
 camera = NodePath("../Camera3D")
 move_speed = 5.0
 rotation_speed = 180.0
+red_light = NodePath("../RedLight")
 
 [node name="asteroid_spawner" parent="ship" node_paths=PackedStringArray("ship") instance=ExtResource("19_ny2il")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.27299e-06, 0, 52)
@@ -159,16 +161,13 @@ ship = NodePath("..")
 spawn_cd = 2.0
 
 [node name="RedLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127007, 2.32729, 0.303721)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.427007, 2.52729, 0.003721)
 visible = false
-light_color = Color(0.605556, 0.00539529, 0.267553, 1)
-light_energy = 5.0
-light_specular = 0.85
+light_color = Color(1, 0.0117647, 0, 1)
+light_energy = 10.0
+light_specular = 0.0
 shadow_enabled = true
 shadow_normal_bias = 0.0
-script = ExtResource("14_vfrn5")
-noise = SubResource("NoiseTexture2D_jxwrd")
-flicker_speed = 3.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539071, 3.68648, 0)
@@ -233,7 +232,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65028, 0, 77.3587)
 [node name="Spawn 6" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6667, 0, -69.5544)
 
-[node name="Area3D" type="Area3D" parent="Environment/Chunk A" node_paths=PackedStringArray("camera", "ship", "return_point")]
+[node name="Area3D" type="Area3D" parent="Environment/Chunk A" node_paths=PackedStringArray("camera", "ship", "return_point") groups=["monster"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45133, 3.8147e-06, 1.14261)
 script = ExtResource("22_kk8bn")
 monster = ExtResource("9_mc3m6")
@@ -283,7 +282,7 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 [node name="Spawn A" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -48.3438, 0, -7.8077)
 
-[node name="Area3D" type="Area3D" parent="Environment/Chunk B" node_paths=PackedStringArray("camera", "ship", "return_point")]
+[node name="Area3D" type="Area3D" parent="Environment/Chunk B" node_paths=PackedStringArray("camera", "ship", "return_point") groups=["monster"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14212, 7.6294e-06, 2.28522)
 script = ExtResource("22_kk8bn")
 monster = ExtResource("10_a5qmg")
@@ -332,7 +331,7 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 [node name="Spawn ?" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 43.5728, 0, -58.4196)
 
-[node name="Area3D" type="Area3D" parent="Environment/Chunk C" node_paths=PackedStringArray("camera", "ship", "return_point")]
+[node name="Area3D" type="Area3D" parent="Environment/Chunk C" node_paths=PackedStringArray("camera", "ship", "return_point") groups=["monster"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723083, -1.52588e-05, 3.89188)
 script = ExtResource("22_kk8bn")
 monster = ExtResource("11_0tws2")

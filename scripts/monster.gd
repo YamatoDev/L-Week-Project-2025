@@ -5,7 +5,7 @@ extends Area3D
 @export var camera: MainCamera
 @export var ship: Ship
 @export var return_point: Node3D
-#@export var audio: AudioStreamPlayer3D
+@export var alarm: AudioStreamPlayer
 
 var ship_inside := false
 var timer : float
@@ -17,7 +17,7 @@ func _on_area_entered(body):
 		monster.is_active = true
 		ship_inside = true
 		ship.monster_active = true
-		#audio.play()
+		alarm.play()
 
 func _on_area_exited(body):
 	print("Exited: " + body.name)
@@ -26,7 +26,7 @@ func _on_area_exited(body):
 		monster.is_active = false
 		ship_inside = false
 		ship.monster_active = false
-		#audio.stop()
+		alarm.stop()
 
 func _process(delta: float) -> void:
 	if ship_inside:

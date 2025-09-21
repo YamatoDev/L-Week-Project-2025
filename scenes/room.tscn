@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=45 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
@@ -20,18 +20,30 @@
 [ext_resource type="AudioStream" uid="uid://cdibclynkjo6q" path="res://placeholders/audio/heartbeat.wav" id="13_1wmww"]
 [ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="13_23wr2"]
 [ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="13_voycu"]
-[ext_resource type="Script" path="res://scenes/location_manager.gd" id="14_2ftkj"]
+[ext_resource type="Script" uid="uid://cor74uyeluxhq" path="res://scripts/location_manager.gd" id="14_2ftkj"]
 [ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="14_vfrn5"]
 [ext_resource type="AudioStream" uid="uid://bakyw8vch1bor" path="res://placeholders/audio/crash.wav" id="15_1wmww"]
+[ext_resource type="AudioStream" uid="uid://c5uos37njg7tc" path="res://placeholders/audio/alarm.wav" id="16_ftego"]
 [ext_resource type="PackedScene" uid="uid://b6c62vs3ae24o" path="res://scenes/ship.tscn" id="18_2ftkj"]
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
-[ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
+[ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scripts/player_world_boundary.gd" id="18_katsu"]
 [ext_resource type="PackedScene" uid="uid://chjhoolg7ldl8" path="res://scenes/congrats.tscn" id="19_0tws2"]
 [ext_resource type="PackedScene" uid="uid://c1xokn2kunm3" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
 [ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scripts/chunk_B_spawn_logic.gd" id="19_spkk5"]
 [ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scripts/chunk_C_spawn_logic.gd" id="20_yggoe"]
-[ext_resource type="Script" uid="uid://dkq1812exb6jc" path="res://scenes/audio_listener.gd" id="21_7r6do"]
-[ext_resource type="Script" uid="uid://bha5pmim08xci" path="res://scenes/monster.gd" id="22_kk8bn"]
+[ext_resource type="Script" uid="uid://bha5pmim08xci" path="res://scripts/monster.gd" id="22_kk8bn"]
+
+[sub_resource type="GDScript" id="GDScript_1wmww"]
+script/source = "class_name AlarmSound extends Node
+
+@export var alarm: AudioStreamPlayer
+
+func _set_audio_on():
+	alarm.play()
+	
+func _set_audio_off():
+	alarm.stop()
+"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
 height = 0.388062
@@ -102,6 +114,7 @@ process_mode = 1
 
 [node name="Spaceship2" parent="." instance=ExtResource("1_vfrn5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04626, 0, 0.075446)
+script = SubResource("GDScript_1wmww")
 
 [node name="Node3D" type="StaticBody3D" parent="Spaceship2" node_paths=PackedStringArray("spaceScreen")]
 transform = Transform3D(-1.74743e-08, -5.98307e-10, -0.4, -0.0136877, 0.399766, 2.03775e-15, 0.399766, 0.0136877, -1.74846e-08, -0.00366347, 0.712128, 1.36413)
@@ -147,6 +160,10 @@ bus = &"sfx"
 
 [node name="crash" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("15_1wmww")
+bus = &"sfx"
+
+[node name="alarm" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("16_ftego")
 bus = &"sfx"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -218,7 +235,7 @@ spawn_cd = 2.0
 
 [node name="AudioListener3D" type="AudioListener3D" parent="ship"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.52831e-08, 0, 1.4935)
-script = ExtResource("21_7r6do")
+current = true
 
 [node name="RedLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.427007, 2.52729, 0.003721)
@@ -292,7 +309,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65028, 0, 77.3587)
 [node name="Spawn 6" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6667, 0, -69.5544)
 
-[node name="Area3D" type="Area3D" parent="Environment/Chunk A" node_paths=PackedStringArray("camera", "ship", "return_point") groups=["monster"]]
+[node name="Area3D" type="Area3D" parent="Environment/Chunk A" node_paths=PackedStringArray("camera", "ship", "return_point", "alarm") groups=["monster"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45133, 3.8147e-06, 1.14261)
 script = ExtResource("22_kk8bn")
 monster = ExtResource("9_mc3m6")
@@ -300,6 +317,7 @@ time_limit = 30.0
 camera = NodePath("../../../Camera3D")
 ship = NodePath("../../../ship")
 return_point = NodePath("../Spawnpoint")
+alarm = NodePath("../../../Audio/alarm")
 
 [node name="Monster A" type="CollisionShape3D" parent="Environment/Chunk A/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.432587)
@@ -350,7 +368,7 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 [node name="Spawn A" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -48.3438, 0, -7.8077)
 
-[node name="Area3D" type="Area3D" parent="Environment/Chunk B" node_paths=PackedStringArray("camera", "ship", "return_point") groups=["monster"]]
+[node name="Area3D" type="Area3D" parent="Environment/Chunk B" node_paths=PackedStringArray("camera", "ship", "return_point", "alarm") groups=["monster"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14212, 7.6294e-06, 2.28522)
 script = ExtResource("22_kk8bn")
 monster = ExtResource("10_a5qmg")
@@ -358,6 +376,7 @@ time_limit = 25.0
 camera = NodePath("../../../Camera3D")
 ship = NodePath("../../../ship")
 return_point = NodePath("../Spawnpoint")
+alarm = NodePath("../../../Audio/alarm")
 
 [node name="Monster B" type="CollisionShape3D" parent="Environment/Chunk B/Area3D"]
 shape = SubResource("BoxShape3D_jxwrd")
@@ -407,7 +426,7 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 [node name="Spawn ?" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 43.5728, 0, -58.4196)
 
-[node name="Area3D" type="Area3D" parent="Environment/Chunk C" node_paths=PackedStringArray("camera", "ship", "return_point") groups=["monster"]]
+[node name="Area3D" type="Area3D" parent="Environment/Chunk C" node_paths=PackedStringArray("camera", "ship", "return_point", "alarm") groups=["monster"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723083, -1.52588e-05, 3.89188)
 script = ExtResource("22_kk8bn")
 monster = ExtResource("11_0tws2")
@@ -415,6 +434,7 @@ time_limit = 20.0
 camera = NodePath("../../../Camera3D")
 ship = NodePath("../../../ship")
 return_point = NodePath("../Spawnpoint")
+alarm = NodePath("../../../Audio/alarm")
 
 [node name="Monster C" type="CollisionShape3D" parent="Environment/Chunk C/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.6294e-06, 0)

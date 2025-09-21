@@ -1,5 +1,7 @@
 class_name MainCamera extends Camera3D
 
+@export var audio: AudioStreamPlayer
+
 var mouse = Vector2()
 var flipped := false
 var last_toggle_time := 0
@@ -99,3 +101,4 @@ func shake(factor: float, intensity: float = 0.0, duration: float = 0.0, frequen
 
 func _ready() -> void:
 	shake(1.0, 0.5, 1.0, 0.25)
+	audio.play()

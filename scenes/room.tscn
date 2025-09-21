@@ -1,9 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=44 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
 [ext_resource type="PackedScene" uid="uid://uxkp2m7023tk" path="res://scenes/spaceship_2.tscn" id="1_vfrn5"]
-[ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/button.wav" id="3_katsu"]
+[ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/audio/button.wav" id="3_katsu"]
 [ext_resource type="PackedScene" uid="uid://da8i0dv3phi4m" path="res://scenes/photography.tscn" id="4_jxwrd"]
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="4_v5vuv"]
 [ext_resource type="Script" uid="uid://dcw06i4v03dp" path="res://scripts/texture_data.gd" id="5_spkk5"]
@@ -15,10 +15,14 @@
 [ext_resource type="Resource" uid="uid://cvjdwti20hg6r" path="res://TextureData/monster2.tres" id="10_a5qmg"]
 [ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
 [ext_resource type="Resource" uid="uid://boq3h7yaym8pe" path="res://TextureData/monster3.tres" id="11_0tws2"]
+[ext_resource type="AudioStream" uid="uid://cf4ty22iautwh" path="res://placeholders/audio/dragon_growl.wav" id="11_5o3hq"]
+[ext_resource type="AudioStream" uid="uid://co42sfnfrx4q4" path="res://placeholders/audio/radio.wav" id="12_7r6do"]
+[ext_resource type="AudioStream" uid="uid://cdibclynkjo6q" path="res://placeholders/audio/heartbeat.wav" id="13_1wmww"]
 [ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="13_23wr2"]
 [ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="13_voycu"]
 [ext_resource type="Script" path="res://scenes/location_manager.gd" id="14_2ftkj"]
 [ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="14_vfrn5"]
+[ext_resource type="AudioStream" uid="uid://bakyw8vch1bor" path="res://placeholders/audio/crash.wav" id="15_1wmww"]
 [ext_resource type="PackedScene" uid="uid://b6c62vs3ae24o" path="res://scenes/ship.tscn" id="18_2ftkj"]
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
 [ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
@@ -26,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://c1xokn2kunm3" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
 [ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scripts/chunk_B_spawn_logic.gd" id="19_spkk5"]
 [ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scripts/chunk_C_spawn_logic.gd" id="20_yggoe"]
+[ext_resource type="Script" uid="uid://dkq1812exb6jc" path="res://scenes/audio_listener.gd" id="21_7r6do"]
 [ext_resource type="Script" uid="uid://bha5pmim08xci" path="res://scenes/monster.gd" id="22_kk8bn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
@@ -109,22 +114,46 @@ shape = SubResource("CylinderShape3D_v5vuv")
 
 [node name="Screen" parent="Spaceship2" node_paths=PackedStringArray("sound", "score_display", "congrats", "location_manager") instance=ExtResource("4_jxwrd")]
 transform = Transform3D(-2.665, 0, -1.50996e-07, 0, 1.195, 0, 4.02404e-07, 0, -1, 0, 2.03277, 1.84)
-sound = NodePath("../../AudioStreamPlayer3D")
+sound = NodePath("../../Audio/button")
 space = Array[ExtResource("5_spkk5")]([ExtResource("6_yggoe"), ExtResource("7_2ulci"), ExtResource("8_kk8bn")])
 monsters = Array[ExtResource("5_spkk5")]([ExtResource("9_mc3m6"), ExtResource("10_a5qmg"), ExtResource("11_0tws2")])
 score_display = NodePath("../../score_display")
 congrats = NodePath("../../CanvasLayer/Congrats")
 location_manager = NodePath("../../LocationManager")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="dragon_growl" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04626, 0, 0.075446)
+visible = false
+stream = ExtResource("11_5o3hq")
+bus = &"sfx"
+
+[node name="heartbeat" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.12171, 0, -0.970814)
+visible = false
+stream = ExtResource("13_1wmww")
+bus = &"sfx"
+
+[node name="radio" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.12171, 0, -0.970814)
+visible = false
+stream = ExtResource("12_7r6do")
+bus = &"sfx"
+
+[node name="button" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("3_katsu")
+bus = &"sfx"
+
+[node name="crash" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("15_1wmww")
 bus = &"sfx"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6tcb1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1.29142e-07, -0.00872618, 0.999962, 2.27712e-08, 0.999962, 0.00872618, -1, 2.16434e-08, 1.29336e-07, 0.739615, 1.65, 0.00217557)
+transform = Transform3D(1.29142e-07, -0.00872618, 0.999962, 2.27712e-08, 0.999962, 0.00872618, -1, 2.16434e-08, 1.29336e-07, 0.757662, 1.52943, 0.000570536)
 fov = 83.5
 script = ExtResource("1_4o3f6")
 
@@ -173,18 +202,23 @@ font_size = 63
 [node name="radar" parent="." instance=ExtResource("10_mb7s7")]
 transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -2.04404, 2.72646, 0.0671765)
 
-[node name="ship" parent="." node_paths=PackedStringArray("radar", "camera", "red_light") instance=ExtResource("18_2ftkj")]
+[node name="ship" parent="." node_paths=PackedStringArray("radar", "camera", "red_light", "audio") instance=ExtResource("18_2ftkj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -4, 0)
 radar = NodePath("../radar")
 camera = NodePath("../Camera3D")
 move_speed = 5.0
 rotation_speed = 180.0
 red_light = NodePath("../RedLight")
+audio = NodePath("../Audio/crash")
 
 [node name="asteroid_spawner" parent="ship" node_paths=PackedStringArray("ship") instance=ExtResource("19_ny2il")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.27299e-06, 0, 52)
 ship = NodePath("..")
 spawn_cd = 2.0
+
+[node name="AudioListener3D" type="AudioListener3D" parent="ship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.52831e-08, 0, 1.4935)
+script = ExtResource("21_7r6do")
 
 [node name="RedLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.427007, 2.52729, 0.003721)
@@ -275,6 +309,14 @@ shape = SubResource("BoxShape3D_jxwrd")
 transform = Transform3D(21.975, 0, 0, 0, 21.975, 0, 0, 0, 21.975, 0, 0, 0)
 mesh = SubResource("BoxMesh_2ulci")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk A/Area3D"]
+stream = ExtResource("11_5o3hq")
+volume_db = 1.0
+autoplay = true
+max_distance = 50.0
+bus = &"sfx"
+playback_type = 1
+
 [node name="Spawnpoint" type="Node3D" parent="Environment/Chunk A"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8718, 0, 0)
 
@@ -323,6 +365,14 @@ shape = SubResource("BoxShape3D_jxwrd")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Chunk B/Area3D"]
 transform = Transform3D(21.975, 0, 0, 0, 21.975, 0, 0, 0, 21.975, 0, 0, 0)
 mesh = SubResource("BoxMesh_2ulci")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk B/Area3D"]
+stream = ExtResource("13_1wmww")
+volume_db = 1.0
+autoplay = true
+max_distance = 50.0
+bus = &"sfx"
+playback_type = 1
 
 [node name="Spawnpoint" type="Node3D" parent="Environment/Chunk B"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.5186, 0, 0)
@@ -373,6 +423,14 @@ shape = SubResource("BoxShape3D_jxwrd")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Chunk C/Area3D"]
 transform = Transform3D(21.975, 0, 0, 0, 21.975, 0, 0, 0, 21.975, 0, 0, 0)
 mesh = SubResource("BoxMesh_2ulci")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk C/Area3D"]
+stream = ExtResource("12_7r6do")
+volume_db = 1.0
+autoplay = true
+max_distance = 50.0
+bus = &"sfx"
+playback_type = 1
 
 [node name="Spawnpoint" type="Node3D" parent="Environment/Chunk C"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.7817, 0, 0)

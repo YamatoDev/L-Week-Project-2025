@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bw03wvv367lsg" path="res://models/Spaceship.blend" id="1_kthgp"]
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="2_25jaq"]
-[ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/button.wav" id="3_ou6ik"]
+[ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/audio/button.wav" id="3_ou6ik"]
 [ext_resource type="Material" uid="uid://bvpf5l285dyqe" path="res://placeholders/materials/Base.tres" id="4_u8fd2"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="5_a2f88"]
 [ext_resource type="Material" uid="uid://b0qat7hopsrhb" path="res://placeholders/materials/Tracen.tres" id="6_bpcbs"]

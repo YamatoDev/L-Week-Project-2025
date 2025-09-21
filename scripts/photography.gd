@@ -1,7 +1,7 @@
 extends Node3D
 class_name PhotographyScreen
 
-@export var sound: AudioStreamPlayer3D
+@export var sound: AudioStreamPlayer
 @export var space: Array[TextureData] = []
 @export var monsters: Array[TextureData] = []
 @export var score_display: Label3D

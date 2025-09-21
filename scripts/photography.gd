@@ -1,6 +1,7 @@
 extends Node3D
 class_name PhotographyScreen
 
+<<<<<<< Updated upstream
 @export var sound: AudioStreamPlayer3D
 @export var space: Array[TextureData] = []
 @export var monsters: Array[TextureData] = []
@@ -23,13 +24,70 @@ func _update_monster_data(args) -> void:
 		
 		space_screen.texture = monsters[args].texture
 		print(str(args))
+=======
+@export var sound: AudioStreamPlayer
+@export var space: Array[TextureData] = []
+@export var monsters: Array[TextureData] = []
+@export var score_display: Label3D
+@export var congrats: Control
+@export var location_manager: LocationManager
+@onready var space_screen:= $SubViewport/textureholder
+
+var score: int = 0;
+
+func _Activate() -> void:
+	sound.play()
+	
+	for monster in monsters:
+		if monster.is_active:
+			_update_texture(monster)
+			return
+	
+	_play_normal_material(randi_range(0, 2))
+
+func _play_normal_material(number: int) -> void:
+	_update_texture(space[number])
+
+func _update_monster_data(args) -> void:
+	if typeof(args) == TYPE_INT:
+		if(args >= monsters.size()):
+			_play_normal_material(randi_range(0, 2))
+			return
+		
+		_update_texture(monsters[args])
+>>>>>>> Stashed changes
 	
 	elif typeof(args) == TYPE_STRING:
 		for monster in monsters:
 			if monster.name == args:
+<<<<<<< Updated upstream
 				space_screen.texture = monster.texture
 				print("Found match!")
 		print(str(args))
 	
 	else:
 		print("not intended")
+=======
+				_update_texture(monster)
+	
+	else:
+		print("not intended")
+
+func _update_texture(textureData: TextureData):
+	if textureData.is_active:
+		space_screen.texture = textureData.texture
+		if (!textureData.picture_taken):
+			print("new pic")
+			textureData.picture_taken = true
+			_update_text()
+	else:
+		_play_normal_material(randi_range(0, 2))
+
+func _update_text() -> void:
+	score+=1
+	location_manager._move_to_next_enemy()
+	score_display.text = str(score) + "/3"
+	
+	if score >= 3:
+		congrats.visible = true
+>>>>>>> Stashed changes

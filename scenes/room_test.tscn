@@ -2,7 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bw03wvv367lsg" path="res://models/Spaceship.blend" id="1_kthgp"]
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="2_25jaq"]
+<<<<<<< Updated upstream
 [ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/button.wav" id="3_ou6ik"]
+=======
+[ext_resource type="AudioStream" uid="uid://b4bxxrjbr7r3m" path="res://placeholders/audio/button.wav" id="3_ou6ik"]
+>>>>>>> Stashed changes
 [ext_resource type="Material" uid="uid://bvpf5l285dyqe" path="res://placeholders/materials/Base.tres" id="4_u8fd2"]
 [ext_resource type="Script" uid="uid://bc1joflqae7ks" path="res://scripts/screen.gd" id="5_a2f88"]
 [ext_resource type="Material" uid="uid://b0qat7hopsrhb" path="res://placeholders/materials/Tracen.tres" id="6_bpcbs"]
@@ -18,7 +22,11 @@
 [ext_resource type="Resource" uid="uid://c6vac4o12ivw6" path="res://TextureData/space1.tres" id="13_jgc7q"]
 [ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="14_hrjob"]
 [ext_resource type="Resource" uid="uid://ccrqnu8lw0lq1" path="res://TextureData/space2.tres" id="14_k81o3"]
+<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://scripts/flickering_light.gd" id="15_e0mr4"]
+=======
+[ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="15_e0mr4"]
+>>>>>>> Stashed changes
 [ext_resource type="Resource" uid="uid://blmn5eqr3hwcp" path="res://TextureData/space3.tres" id="15_wefvi"]
 [ext_resource type="Resource" uid="uid://bywowwmgdrj22" path="res://TextureData/monster1.tres" id="16_fxany"]
 [ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="16_nxmyo"]
@@ -72,7 +80,11 @@ shader_parameter/roll_speed = 3.8e-07
 shader_parameter/scan_line_strength = -8.0
 shader_parameter/pixel_strength = -2.0
 
+<<<<<<< Updated upstream
 [node name="room" type="Node3D"]
+=======
+[node name="room2" type="Node3D"]
+>>>>>>> Stashed changes
 process_mode = 1
 
 [node name="Spaceship2" parent="." instance=ExtResource("1_kthgp")]

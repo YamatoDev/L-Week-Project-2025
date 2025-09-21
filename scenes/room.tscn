@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=34 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
@@ -7,6 +8,13 @@
 <<<<<<< Updated upstream
 =======
 [ext_resource type="Material" uid="uid://b0qat7hopsrhb" path="res://placeholders/materials/Tracen.tres" id="4_8cv3p"]
+>>>>>>> Stashed changes
+=======
+[gd_scene load_steps=48 format=3 uid="uid://bktbx3whhvrkq"]
+
+[ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
+[ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
+[ext_resource type="PackedScene" uid="uid://uxkp2m7023tk" path="res://scenes/spaceship_2.tscn" id="1_vfrn5"]
 >>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://da8i0dv3phi4m" path="res://scenes/photography.tscn" id="4_jxwrd"]
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="4_v5vuv"]
@@ -19,16 +27,52 @@
 [ext_resource type="Resource" uid="uid://cvjdwti20hg6r" path="res://TextureData/monster2.tres" id="10_a5qmg"]
 [ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
 [ext_resource type="Resource" uid="uid://boq3h7yaym8pe" path="res://TextureData/monster3.tres" id="11_0tws2"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://f4uog51yyhq0" path="res://scenes/ship_map.tscn" id="11_xorjj"]
+=======
+[ext_resource type="AudioStream" uid="uid://cf4ty22iautwh" path="res://placeholders/audio/dragon_growl.wav" id="11_5o3hq"]
+[ext_resource type="AudioStream" uid="uid://co42sfnfrx4q4" path="res://placeholders/audio/radio.wav" id="12_7r6do"]
+[ext_resource type="AudioStream" uid="uid://cdibclynkjo6q" path="res://placeholders/audio/heartbeat.wav" id="13_1wmww"]
+>>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="13_23wr2"]
 [ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="13_voycu"]
+[ext_resource type="Script" uid="uid://cor74uyeluxhq" path="res://scripts/location_manager.gd" id="14_2ftkj"]
+[ext_resource type="AudioStream" uid="uid://bd516kj6ksu4k" path="res://audio/photo.wav" id="14_c4f3b"]
 [ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="14_vfrn5"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://ufvd4undc2f6" path="res://scenes/ship.tscn" id="18_2ftkj"]
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
 [ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scenes/player_world_boundary.gd" id="18_katsu"]
 [ext_resource type="PackedScene" uid="uid://c1xokn2kunm3" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
 [ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scripts/chunk_B_spawn_logic.gd" id="19_spkk5"]
 [ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scripts/chunk_C_spawn_logic.gd" id="20_yggoe"]
+=======
+[ext_resource type="AudioStream" uid="uid://2k8ygtfaa5vr" path="res://audio/crash.wav" id="15_c4f3b"]
+[ext_resource type="AudioStream" uid="uid://lehf741ldbhe" path="res://audio/danger.wav" id="16_2cm04"]
+[ext_resource type="PackedScene" uid="uid://b6c62vs3ae24o" path="res://scenes/ship.tscn" id="18_2ftkj"]
+[ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
+[ext_resource type="Script" uid="uid://bdwbn60pc0bxb" path="res://scripts/player_world_boundary.gd" id="18_katsu"]
+[ext_resource type="PackedScene" uid="uid://chjhoolg7ldl8" path="res://scenes/congrats.tscn" id="19_0tws2"]
+[ext_resource type="PackedScene" uid="uid://c1xokn2kunm3" path="res://scenes/asteroid_spawner.tscn" id="19_ny2il"]
+[ext_resource type="Script" uid="uid://bmfry7tnn2bkj" path="res://scripts/chunk_B_spawn_logic.gd" id="19_spkk5"]
+[ext_resource type="Script" uid="uid://ugs4fvclpj2h" path="res://scripts/chunk_C_spawn_logic.gd" id="20_yggoe"]
+[ext_resource type="Script" uid="uid://bha5pmim08xci" path="res://scripts/monster.gd" id="22_kk8bn"]
+[ext_resource type="AudioStream" uid="uid://xtd2l5ju5ids" path="res://audio/Monster2.wav" id="30_ftego"]
+[ext_resource type="AudioStream" uid="uid://dysq1laoe6xfr" path="res://audio/Monster1.wav" id="32_c4f3b"]
+[ext_resource type="AudioStream" uid="uid://b1rj0w8p2dgn4" path="res://audio/Monster3.wav" id="33_3aavd"]
+
+[sub_resource type="GDScript" id="GDScript_1wmww"]
+script/source = "class_name AlarmSound extends Node
+
+@export var alarm: AudioStreamPlayer
+
+func _set_audio_on():
+	alarm.play()
+	
+func _set_audio_off():
+	alarm.stop()
+"
+>>>>>>> Stashed changes
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
 height = 0.388062
@@ -44,6 +88,11 @@ sky_material = SubResource("ProceduralSkyMaterial_xwbdb")
 background_mode = 1
 sky = SubResource("Sky_voycu")
 tonemap_mode = 2
+<<<<<<< Updated upstream
+=======
+tonemap_exposure = 0.75
+tonemap_white = 2.0
+>>>>>>> Stashed changes
 glow_enabled = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_katsu"]
@@ -79,7 +128,14 @@ shader_parameter/pixel_strength = -2.0
 size = Vector3(150, 30, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jxwrd"]
+<<<<<<< Updated upstream
 size = Vector3(30, 30, 30)
+=======
+size = Vector3(30, 30, 31.546)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ulci"]
+size = Vector3(1.35, 1.35, 1.35)
+>>>>>>> Stashed changes
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_katsu"]
 size = Vector3(600, 30, 300)
@@ -87,8 +143,13 @@ size = Vector3(600, 30, 300)
 [node name="room" type="Node3D"]
 process_mode = 1
 
+<<<<<<< Updated upstream
 [node name="Spaceship2" parent="." instance=ExtResource("1_dynfe")]
+=======
+[node name="Spaceship2" parent="." instance=ExtResource("1_vfrn5")]
+>>>>>>> Stashed changes
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04626, 0, 0.075446)
+script = SubResource("GDScript_1wmww")
 
 [node name="Node3D" type="StaticBody3D" parent="Spaceship2" node_paths=PackedStringArray("spaceScreen")]
 transform = Transform3D(-1.74743e-08, -5.98307e-10, -0.4, -0.0136877, 0.399766, 2.03775e-15, 0.399766, 0.0136877, -1.74846e-08, -0.00366347, 0.712128, 1.36413)
@@ -99,6 +160,7 @@ spaceScreen = NodePath("../Screen")
 transform = Transform3D(1, 1.82539e-07, 9.26442e-22, -1.82539e-07, 1, 1.27055e-21, -1.3017e-21, 1.69407e-21, 1, 0, 0.486145, 0)
 shape = SubResource("CylinderShape3D_v5vuv")
 
+<<<<<<< Updated upstream
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Spaceship2/Node3D"]
 stream = ExtResource("3_katsu")
 bus = &"sfx"
@@ -108,31 +170,140 @@ transform = Transform3D(-2.665, 0, -1.50996e-07, 0, 1.195, 0, 4.02404e-07, 0, -1
 sound = NodePath("../Node3D/AudioStreamPlayer3D")
 space = Array[ExtResource("5_spkk5")]([ExtResource("6_yggoe"), ExtResource("7_2ulci"), ExtResource("8_kk8bn")])
 monsters = Array[ExtResource("5_spkk5")]([ExtResource("9_mc3m6"), ExtResource("10_a5qmg"), ExtResource("11_0tws2")])
+=======
+[node name="Screen" parent="Spaceship2" node_paths=PackedStringArray("sound", "score_display", "congrats", "location_manager") instance=ExtResource("4_jxwrd")]
+transform = Transform3D(-2.665, 0, -1.50996e-07, 0, 1.195, 0, 4.02404e-07, 0, -1, 0, 2.03277, 1.84)
+sound = NodePath("../../Audio/button")
+space = Array[ExtResource("5_spkk5")]([ExtResource("6_yggoe"), ExtResource("7_2ulci"), ExtResource("8_kk8bn")])
+monsters = Array[ExtResource("5_spkk5")]([ExtResource("9_mc3m6"), ExtResource("10_a5qmg"), ExtResource("11_0tws2")])
+score_display = NodePath("../../score_display")
+congrats = NodePath("../../CanvasLayer/Congrats")
+location_manager = NodePath("../../LocationManager")
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="dragon_growl" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04626, 0, 0.075446)
+visible = false
+stream = ExtResource("11_5o3hq")
+bus = &"sfx"
+
+[node name="heartbeat" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.12171, 0, -0.970814)
+visible = false
+stream = ExtResource("13_1wmww")
+bus = &"sfx"
+
+[node name="radio" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.12171, 0, -0.970814)
+visible = false
+stream = ExtResource("12_7r6do")
+bus = &"sfx"
+
+[node name="button" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("14_c4f3b")
+volume_db = -7.924
+bus = &"sfx"
+
+[node name="crash" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("15_c4f3b")
+bus = &"sfx"
+
+[node name="alarm" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("16_2cm04")
+bus = &"sfx"
+>>>>>>> Stashed changes
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6tcb1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1.29142e-07, -0.00872618, 0.999962, 2.27712e-08, 0.999962, 0.00872618, -1, 2.16434e-08, 1.29336e-07, 0.739615, 1.65, 0.00217557)
+transform = Transform3D(1.29142e-07, -0.00872618, 0.999962, 2.27712e-08, 0.999962, 0.00872618, -1, 2.16434e-08, 1.29336e-07, 0.757662, 1.52943, 0.000570536)
 fov = 83.5
 script = ExtResource("1_4o3f6")
+
+[node name="score_display" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.57636, 1.62905, -1.42124)
+shaded = true
+modulate = Color(3.46541e-06, 0.730261, 0.56219, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "0/3"
+font_size = 65
 
 [node name="CodeManager" type="Node" parent="."]
 script = ExtResource("9_42v8c")
 
 [node name="code_display" type="Label3D" parent="CodeManager"]
+<<<<<<< Updated upstream
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.93368, 2.70166, -1.42334)
+=======
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.9329, 2.6953, -1.42749)
+shaded = true
+>>>>>>> Stashed changes
 modulate = Color(1, 0, 1, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"
 
+[node name="LocationManager" type="Node" parent="." node_paths=PackedStringArray("ship", "enemyLocations", "player_label", "enemy_label")]
+process_mode = 1
+script = ExtResource("14_2ftkj")
+ship = NodePath("../ship")
+enemyLocations = [NodePath("../Environment/Chunk A/Area3D"), NodePath("../Environment/Chunk B/Area3D"), NodePath("../Environment/Chunk C/Area3D")]
+player_label = NodePath("player_location_display")
+enemy_label = NodePath("enemy_location_display")
+
+[node name="player_location_display" type="Label3D" parent="LocationManager"]
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.61725, 1.54883, 0.0796515)
+shaded = true
+modulate = Color(3.46541e-06, 0.730261, 0.56219, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "000, 000"
+font_size = 63
+
+[node name="enemy_location_display" type="Label3D" parent="LocationManager"]
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.33999, 1.23297, 0.0796515)
+shaded = true
+modulate = Color(3.46541e-06, 0.730261, 0.56219, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "000, 000"
+font_size = 63
+
 [node name="radar" parent="." instance=ExtResource("10_mb7s7")]
 transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -2.04404, 2.72646, 0.0671765)
 
+<<<<<<< Updated upstream
 [node name="ShipMap" parent="." node_paths=PackedStringArray("radar_init", "camera_init") instance=ExtResource("11_xorjj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -10, 0)
 radar_init = NodePath("../radar")
 camera_init = NodePath("../Camera3D")
+=======
+[node name="ship" parent="." node_paths=PackedStringArray("radar", "camera", "red_light", "audio") instance=ExtResource("18_2ftkj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -4, 0)
+radar = NodePath("../radar")
+camera = NodePath("../Camera3D")
+move_speed = 5.0
+rotation_speed = 180.0
+red_light = NodePath("../RedLight")
+audio = NodePath("../Audio/crash")
+
+[node name="asteroid_spawner" parent="ship" node_paths=PackedStringArray("ship") instance=ExtResource("19_ny2il")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.27299e-06, 0, 52)
+ship = NodePath("..")
+spawn_cd = 2.0
+
+[node name="AudioListener3D" type="AudioListener3D" parent="ship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.52831e-08, 0, 1.4935)
+current = true
+
+[node name="RedLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.427007, 2.52729, 0.003721)
+visible = false
+light_color = Color(1, 0.0117647, 0, 1)
+light_energy = 10.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_normal_bias = 0.0
+>>>>>>> Stashed changes
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539071, 3.68648, 0)
@@ -162,10 +333,20 @@ process_mode = 3
 process_mode = 3
 visible = false
 
+<<<<<<< Updated upstream
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Chunk A" type="Area3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.4182, 0, 0)
+=======
+[node name="Congrats" parent="CanvasLayer" instance=ExtResource("19_0tws2")]
+visible = false
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Chunk A" type="Area3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.8585, 3.05176e-05, -0.00577545)
+>>>>>>> Stashed changes
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Chunk A"]
 shape = SubResource("BoxShape3D_vfrn5")
@@ -174,7 +355,11 @@ shape = SubResource("BoxShape3D_vfrn5")
 script = ExtResource("18_jxwrd")
 code_manager = NodePath("../../../CodeManager")
 enemy_spawns = [NodePath("Spawn 1"), NodePath("Spawn 2"), NodePath("Spawn 3"), NodePath("Spawn 4"), NodePath("Spawn 5"), NodePath("Spawn 6")]
+<<<<<<< Updated upstream
 monster = NodePath("../Monster A")
+=======
+monster = NodePath("../Area3D")
+>>>>>>> Stashed changes
 
 [node name="Spawn 1" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 36.1086, 0, 61.0502)
@@ -194,9 +379,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65028, 0, 77.3587)
 [node name="Spawn 6" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6667, 0, -69.5544)
 
+<<<<<<< Updated upstream
 [node name="Monster A" type="CollisionShape3D" parent="Environment/Chunk A"]
 shape = SubResource("BoxShape3D_jxwrd")
 
+=======
+[node name="Area3D" type="Area3D" parent="Environment/Chunk A" node_paths=PackedStringArray("camera", "ship", "return_point", "alarm") groups=["monster"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45133, 3.8147e-06, 1.14261)
+script = ExtResource("22_kk8bn")
+monster = ExtResource("9_mc3m6")
+time_limit = 30.0
+camera = NodePath("../../../Camera3D")
+ship = NodePath("../../../ship")
+return_point = NodePath("../Spawnpoint")
+alarm = NodePath("../../../Audio/alarm")
+
+[node name="Monster A" type="CollisionShape3D" parent="Environment/Chunk A/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.432587)
+shape = SubResource("BoxShape3D_jxwrd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Chunk A/Area3D"]
+transform = Transform3D(21.975, 0, 0, 0, 21.975, 0, 0, 0, 21.975, 0, 0, 0)
+mesh = SubResource("BoxMesh_2ulci")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk A/Area3D"]
+stream = ExtResource("30_ftego")
+volume_db = 1.0
+autoplay = true
+max_distance = 50.0
+bus = &"sfx"
+playback_type = 1
+
+[node name="Spawnpoint" type="Node3D" parent="Environment/Chunk A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8718, 0, 0)
+
+>>>>>>> Stashed changes
 [node name="Chunk B" type="Area3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -259.016, 0, 0)
 
@@ -207,7 +424,11 @@ shape = SubResource("BoxShape3D_vfrn5")
 script = ExtResource("19_spkk5")
 code_manager = NodePath("../../../CodeManager")
 enemy_spawns = [NodePath("Spawn F"), NodePath("Spawn E"), NodePath("Spawn D"), NodePath("Spawn C"), NodePath("Spawn B"), NodePath("Spawn A")]
+<<<<<<< Updated upstream
 monster = NodePath("../Monster B")
+=======
+monster = NodePath("../Area3D")
+>>>>>>> Stashed changes
 
 [node name="Spawn F" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 36.1086, 0, 46.106)
@@ -227,9 +448,40 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 [node name="Spawn A" type="Node3D" parent="Environment/Chunk B/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -48.3438, 0, -7.8077)
 
+<<<<<<< Updated upstream
 [node name="Monster B" type="CollisionShape3D" parent="Environment/Chunk B"]
 shape = SubResource("BoxShape3D_jxwrd")
 
+=======
+[node name="Area3D" type="Area3D" parent="Environment/Chunk B" node_paths=PackedStringArray("camera", "ship", "return_point", "alarm") groups=["monster"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14212, 7.6294e-06, 2.28522)
+script = ExtResource("22_kk8bn")
+monster = ExtResource("10_a5qmg")
+time_limit = 25.0
+camera = NodePath("../../../Camera3D")
+ship = NodePath("../../../ship")
+return_point = NodePath("../Spawnpoint")
+alarm = NodePath("../../../Audio/alarm")
+
+[node name="Monster B" type="CollisionShape3D" parent="Environment/Chunk B/Area3D"]
+shape = SubResource("BoxShape3D_jxwrd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Chunk B/Area3D"]
+transform = Transform3D(21.975, 0, 0, 0, 21.975, 0, 0, 0, 21.975, 0, 0, 0)
+mesh = SubResource("BoxMesh_2ulci")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk B/Area3D"]
+stream = ExtResource("32_c4f3b")
+volume_db = 1.0
+autoplay = true
+max_distance = 50.0
+bus = &"sfx"
+playback_type = 1
+
+[node name="Spawnpoint" type="Node3D" parent="Environment/Chunk B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.5186, 0, 0)
+
+>>>>>>> Stashed changes
 [node name="Chunk C" type="Area3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -425.309, 0, 0)
 
@@ -240,7 +492,11 @@ shape = SubResource("BoxShape3D_vfrn5")
 script = ExtResource("20_yggoe")
 code_manager = NodePath("../../../CodeManager")
 enemy_spawns = [NodePath("Spawn <"), NodePath("Spawn >"), NodePath("Spawn +"), NodePath("Spawn -"), NodePath("Spawn ="), NodePath("Spawn ?")]
+<<<<<<< Updated upstream
 monster = NodePath("../Monster C")
+=======
+monster = NodePath("../Area3D")
+>>>>>>> Stashed changes
 
 [node name="Spawn <" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, -59.9138, 0, -11.7241)
@@ -260,9 +516,41 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 [node name="Spawn ?" type="Node3D" parent="Environment/Chunk C/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 43.5728, 0, -58.4196)
 
+<<<<<<< Updated upstream
 [node name="Monster C" type="CollisionShape3D" parent="Environment/Chunk C"]
 shape = SubResource("BoxShape3D_jxwrd")
 
+=======
+[node name="Area3D" type="Area3D" parent="Environment/Chunk C" node_paths=PackedStringArray("camera", "ship", "return_point", "alarm") groups=["monster"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723083, -1.52588e-05, 3.89188)
+script = ExtResource("22_kk8bn")
+monster = ExtResource("11_0tws2")
+time_limit = 20.0
+camera = NodePath("../../../Camera3D")
+ship = NodePath("../../../ship")
+return_point = NodePath("../Spawnpoint")
+alarm = NodePath("../../../Audio/alarm")
+
+[node name="Monster C" type="CollisionShape3D" parent="Environment/Chunk C/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.6294e-06, 0)
+shape = SubResource("BoxShape3D_jxwrd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Chunk C/Area3D"]
+transform = Transform3D(21.975, 0, 0, 0, 21.975, 0, 0, 0, 21.975, 0, 0, 0)
+mesh = SubResource("BoxMesh_2ulci")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk C/Area3D"]
+stream = ExtResource("33_3aavd")
+volume_db = 1.0
+autoplay = true
+max_distance = 50.0
+bus = &"sfx"
+playback_type = 1
+
+[node name="Spawnpoint" type="Node3D" parent="Environment/Chunk C"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.7817, 0, 0)
+
+>>>>>>> Stashed changes
 [node name="Player Boundary" type="Area3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -265.763, 0, 0)
 script = ExtResource("18_katsu")
@@ -271,4 +559,13 @@ script = ExtResource("18_katsu")
 shape = SubResource("BoxShape3D_katsu")
 
 [connection signal="request_code_display" from="CanvasLayer/menu_screen" to="CodeManager" method="_on_menu_screen_request_code_display"]
+<<<<<<< Updated upstream
 [connection signal="body_exited" from="Environment/Player Boundary" to="Spaceship2/Node3D" method="_on_player_boundary_body_exited"]
+=======
+[connection signal="area_entered" from="Environment/Chunk A/Area3D" to="Environment/Chunk A/Area3D" method="_on_area_entered"]
+[connection signal="area_exited" from="Environment/Chunk A/Area3D" to="Environment/Chunk A/Area3D" method="_on_area_exited"]
+[connection signal="area_entered" from="Environment/Chunk B/Area3D" to="Environment/Chunk B/Area3D" method="_on_area_entered"]
+[connection signal="area_exited" from="Environment/Chunk B/Area3D" to="Environment/Chunk B/Area3D" method="_on_area_exited"]
+[connection signal="area_entered" from="Environment/Chunk C/Area3D" to="Environment/Chunk C/Area3D" method="_on_area_entered"]
+[connection signal="area_exited" from="Environment/Chunk C/Area3D" to="Environment/Chunk C/Area3D" method="_on_area_exited"]
+>>>>>>> Stashed changes

@@ -7,4 +7,9 @@
 script = ExtResource("1_ncjse")
 name = "Monster3"
 texture = ExtResource("2_ncjse")
+<<<<<<< Updated upstream
+=======
+is_active = false
+picture_taken = false
+>>>>>>> Stashed changes
 metadata/_custom_type_script = "uid://dcw06i4v03dp"

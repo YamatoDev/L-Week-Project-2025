@@ -27,11 +27,19 @@ func _process(delta: float) -> void:
 			randf_range(shape_min.y, shape_max.y),
 			randf_range(shape_min.z, shape_max.z)
 		))
+<<<<<<< Updated upstream
 
 		new_asteroid.set_rotation_degrees(Vector3(0, 0, 0))
 
 		new_asteroid.ship = ship
 
 		add_child(new_asteroid)
+=======
+		new_asteroid.set_rotation_degrees(global_rotation_degrees + Vector3(0, 90, 0))
+
+		new_asteroid.ship = ship
+		
+		get_tree().root.add_child(new_asteroid)
+>>>>>>> Stashed changes
 		
 		spawn_cd_left = spawn_cd

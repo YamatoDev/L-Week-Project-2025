@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://chjhoolg7ldl8"]
+
+[node name="Congrats" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="black_bg" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.368627)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(29.3889, 16.7101)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.270062
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.997619, 1)
+theme_override_font_sizes/font_size = 128
+text = "Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="title2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00347222
+anchor_top = 0.388688
+anchor_right = 1.00174
+anchor_bottom = 0.916465
+offset_top = -63.8696
+offset_bottom = -63.8696
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.997619, 1)
+theme_override_font_sizes/font_size = 113
+text = "You beat the game?"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="title3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0034865
+anchor_top = 0.751247
+anchor_right = 1.00175
+anchor_bottom = 0.990445
+offset_left = 3.98355
+offset_top = 5.19199
+offset_right = 3.98352
+offset_bottom = 5.19196
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.997619, 1)
+theme_override_font_sizes/font_size = 73
+text = "You can leave this station now."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

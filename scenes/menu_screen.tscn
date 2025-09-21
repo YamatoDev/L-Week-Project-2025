@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccu2lukg30iav"]
+[gd_scene load_steps=11 format=3 uid="uid://ccu2lukg30iav"]
 
 [ext_resource type="Script" uid="uid://be160eqrwc3x3" path="res://menu_scripts/menu_screen.gd" id="1_tuusc"]
+[ext_resource type="AudioStream" uid="uid://crut6tsxuiku" path="res://audio/game_start.wav" id="2_e6vgv"]
+[ext_resource type="AudioStream" uid="uid://bjnstrsexed1u" path="res://audio/ship.wav" id="3_pn7wg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuusc"]
 
@@ -129,5 +131,12 @@ metadata/_edit_use_anchors_ = true
 libraries = {
 &"": SubResource("AnimationLibrary_iefc8")
 }
+
+[node name="start_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_e6vgv")
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pn7wg")
+autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_start_button_pressed"]

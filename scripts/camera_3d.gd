@@ -16,6 +16,15 @@ var shake_intensity: float = 0
 var shake_frequency: float = 0
 var shaking: bool = false
 
+# Shaking part
+@onready var original_pos: Vector3 = global_position
+
+var shake_factor: float = 0
+var shake_duration: float = 0
+var shake_intensity: float = 0
+var shake_frequency: float = 0
+var shaking: bool = false
+
 func _input(event):
 	if event is InputEventMouse:
 		mouse = event.position

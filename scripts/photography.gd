@@ -57,3 +57,4 @@ func _update_text() -> void:
 	
 	if score >= 3:
 		congrats.visible = true
+		get_tree().paused = true

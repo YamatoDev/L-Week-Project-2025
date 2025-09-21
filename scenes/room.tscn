@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bktbx3whhvrkq"]
+[gd_scene load_steps=46 format=3 uid="uid://bktbx3whhvrkq"]
 
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
@@ -14,15 +14,13 @@
 [ext_resource type="Resource" uid="uid://cvjdwti20hg6r" path="res://TextureData/monster2.tres" id="10_a5qmg"]
 [ext_resource type="PackedScene" uid="uid://dcdij40ndv5cj" path="res://scenes/radar.tscn" id="10_mb7s7"]
 [ext_resource type="Resource" uid="uid://boq3h7yaym8pe" path="res://TextureData/monster3.tres" id="11_0tws2"]
-[ext_resource type="AudioStream" uid="uid://cf4ty22iautwh" path="res://placeholders/audio/dragon_growl.wav" id="11_5o3hq"]
-[ext_resource type="AudioStream" uid="uid://co42sfnfrx4q4" path="res://placeholders/audio/radio.wav" id="12_7r6do"]
-[ext_resource type="AudioStream" uid="uid://cdibclynkjo6q" path="res://placeholders/audio/heartbeat.wav" id="13_1wmww"]
 [ext_resource type="PackedScene" uid="uid://ccu2lukg30iav" path="res://scenes/menu_screen.tscn" id="13_23wr2"]
 [ext_resource type="Shader" uid="uid://d3dotfx57utxf" path="res://shaders/crt.gdshader" id="13_voycu"]
 [ext_resource type="Script" uid="uid://cor74uyeluxhq" path="res://scripts/location_manager.gd" id="14_2ftkj"]
 [ext_resource type="AudioStream" uid="uid://bd516kj6ksu4k" path="res://audio/photo.wav" id="14_c4f3b"]
 [ext_resource type="Script" uid="uid://b8b7ug7hrwjce" path="res://scripts/flickering_light.gd" id="14_vfrn5"]
 [ext_resource type="AudioStream" uid="uid://2k8ygtfaa5vr" path="res://audio/crash.wav" id="15_c4f3b"]
+[ext_resource type="FontFile" uid="uid://c4peuekkllys1" path="res://fonts/Kenney Future Narrow.ttf" id="15_ftego"]
 [ext_resource type="AudioStream" uid="uid://lehf741ldbhe" path="res://audio/danger.wav" id="16_2cm04"]
 [ext_resource type="PackedScene" uid="uid://b6c62vs3ae24o" path="res://scenes/ship.tscn" id="18_2ftkj"]
 [ext_resource type="Script" uid="uid://cg2rdh3t2y16" path="res://scripts/chunk_A_spawn_logic.gd" id="18_jxwrd"]
@@ -139,24 +137,6 @@ location_manager = NodePath("../../LocationManager")
 
 [node name="Audio" type="Node3D" parent="."]
 
-[node name="dragon_growl" type="AudioStreamPlayer3D" parent="Audio"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04626, 0, 0.075446)
-visible = false
-stream = ExtResource("11_5o3hq")
-bus = &"sfx"
-
-[node name="heartbeat" type="AudioStreamPlayer3D" parent="Audio"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.12171, 0, -0.970814)
-visible = false
-stream = ExtResource("13_1wmww")
-bus = &"sfx"
-
-[node name="radio" type="AudioStreamPlayer3D" parent="Audio"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.12171, 0, -0.970814)
-visible = false
-stream = ExtResource("12_7r6do")
-bus = &"sfx"
-
 [node name="button" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("14_c4f3b")
 volume_db = -7.924
@@ -184,7 +164,9 @@ shaded = true
 modulate = Color(3.46541e-06, 0.730261, 0.56219, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "0/3"
-font_size = 65
+font = ExtResource("15_ftego")
+font_size = 45
+outline_size = 5
 
 [node name="CodeManager" type="Node" parent="."]
 script = ExtResource("9_42v8c")
@@ -192,9 +174,12 @@ script = ExtResource("9_42v8c")
 [node name="code_display" type="Label3D" parent="CodeManager"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.9329, 2.6953, -1.42749)
 shaded = true
-modulate = Color(0, 0.729412, 0.560784, 1)
+modulate = Color(3.46541e-06, 0.730261, 0.56219, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "CODE"
+font = ExtResource("15_ftego")
+font_size = 45
+outline_size = 5
 
 [node name="LocationManager" type="Node" parent="." node_paths=PackedStringArray("ship", "enemyLocations", "player_label", "enemy_label")]
 process_mode = 1
@@ -205,20 +190,24 @@ player_label = NodePath("player_location_display")
 enemy_label = NodePath("enemy_location_display")
 
 [node name="player_location_display" type="Label3D" parent="LocationManager"]
-transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.61725, 1.54883, 0.0796515)
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.61725, 1.54883, 0.0692754)
 shaded = true
 modulate = Color(3.46541e-06, 0.730261, 0.56219, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "000, 000"
-font_size = 63
+font = ExtResource("15_ftego")
+font_size = 45
+outline_size = 5
 
 [node name="enemy_location_display" type="Label3D" parent="LocationManager"]
-transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.33999, 1.23297, 0.0796515)
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.33999, 1.23297, 0.0692754)
 shaded = true
 modulate = Color(3.46541e-06, 0.730261, 0.56219, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "000, 000"
-font_size = 63
+font = ExtResource("15_ftego")
+font_size = 45
+outline_size = 5
 
 [node name="radar" parent="." instance=ExtResource("10_mb7s7")]
 transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -2.04404, 2.72646, 0.0671765)
@@ -227,7 +216,7 @@ transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -2.04404, 2.72646, 0.06
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -4, 0)
 radar = NodePath("../radar")
 camera = NodePath("../Camera3D")
-move_speed = 5.0
+move_speed = 2.5
 rotation_speed = 180.0
 red_light = NodePath("../RedLight")
 audio = NodePath("../Audio/crash")
@@ -317,7 +306,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6667, 0, -69.5544)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45133, 3.8147e-06, 1.14261)
 script = ExtResource("22_kk8bn")
 monster = ExtResource("9_mc3m6")
-time_limit = 30.0
+time_limit = 10.0
 camera = NodePath("../../../Camera3D")
 ship = NodePath("../../../ship")
 return_point = NodePath("../Spawnpoint")
@@ -333,7 +322,7 @@ mesh = SubResource("BoxMesh_2ulci")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk A/Area3D"]
 stream = ExtResource("30_ftego")
-volume_db = 1.0
+volume_db = 6.0
 autoplay = true
 max_distance = 50.0
 bus = &"sfx"
@@ -376,7 +365,7 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14212, 7.6294e-06, 2.28522)
 script = ExtResource("22_kk8bn")
 monster = ExtResource("10_a5qmg")
-time_limit = 25.0
+time_limit = 8.0
 camera = NodePath("../../../Camera3D")
 ship = NodePath("../../../ship")
 return_point = NodePath("../Spawnpoint")
@@ -392,7 +381,7 @@ mesh = SubResource("BoxMesh_2ulci")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk B/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55545, 1.04766, 1.01097)
 stream = ExtResource("32_c4f3b")
-volume_db = 1.0
+volume_db = 4.0
 autoplay = true
 max_distance = 50.0
 bus = &"sfx"
@@ -435,7 +424,7 @@ transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723083, -1.52588e-05, 3.89188)
 script = ExtResource("22_kk8bn")
 monster = ExtResource("11_0tws2")
-time_limit = 20.0
+time_limit = 5.0
 camera = NodePath("../../../Camera3D")
 ship = NodePath("../../../ship")
 return_point = NodePath("../Spawnpoint")
@@ -451,7 +440,7 @@ mesh = SubResource("BoxMesh_2ulci")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Environment/Chunk C/Area3D"]
 stream = ExtResource("33_3aavd")
-volume_db = 1.0
+volume_db = 6.0
 autoplay = true
 max_distance = 50.0
 bus = &"sfx"

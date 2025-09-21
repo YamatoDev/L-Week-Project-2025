@@ -1,4 +1,6 @@
-[gd_scene load_steps=0 format=3 uid="uid://chjhoolg7ldl8"]
+[gd_scene load_steps=2 format=3 uid="uid://chjhoolg7ldl8"]
+
+[ext_resource type="FontFile" uid="uid://c4peuekkllys1" path="res://fonts/Kenney Future Narrow.ttf" id="1_c74hn"]
 
 [node name="Congrats" type="Control"]
 layout_mode = 3
@@ -23,12 +25,14 @@ metadata/_edit_use_anchors_ = true
 [node name="title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
+anchor_left = 0.000868056
+anchor_right = 0.999132
 anchor_bottom = 0.270062
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.997619, 1)
-theme_override_font_sizes/font_size = 128
+theme_override_fonts/font = ExtResource("1_c74hn")
+theme_override_font_sizes/font_size = 108
 text = "Congratulations!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -46,7 +50,8 @@ offset_bottom = -63.8696
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.997619, 1)
-theme_override_font_sizes/font_size = 113
+theme_override_fonts/font = ExtResource("1_c74hn")
+theme_override_font_sizes/font_size = 93
 text = "You beat the game?"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -66,8 +71,9 @@ offset_bottom = 5.19196
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.997619, 1)
-theme_override_font_sizes/font_size = 73
-text = "You can leave this station now."
+theme_override_fonts/font = ExtResource("1_c74hn")
+theme_override_font_sizes/font_size = 28
+text = "(You can leave this station now.)"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

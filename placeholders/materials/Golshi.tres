@@ -3,4 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bpulhe3rgqb02" path="res://placeholders/GolShi.png" id="1_nsqke"]
 
 [resource]
+transparency = 1
+shading_mode = 0
 albedo_texture = ExtResource("1_nsqke")

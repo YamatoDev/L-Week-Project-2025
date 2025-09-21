@@ -3,4 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dleaj8os5aino" path="res://placeholders/suzuka.png" id="1_o17h0"]
 
 [resource]
+transparency = 1
+shading_mode = 0
 albedo_texture = ExtResource("1_o17h0")

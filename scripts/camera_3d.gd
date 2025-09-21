@@ -56,6 +56,13 @@ func _toggle_camera_rotation() -> void:
 	flipped = !flipped
 	target_y_rotation = 90 if flipped else -90
 
+func _physics_process(_delta: float) -> void:
+	# Breathing
+	var time = Time.get_ticks_msec() * 0.00025 * PI
+	
+	rotation_degrees.y += cos(time * 0.5) * 0.125
+	rotation_degrees.x = sin(time) * 0.5
+
 func _process(delta):
 	# Smoothly interpolate the y rotation towards the target
 	var current_y = rotation_degrees.y
@@ -65,10 +72,10 @@ func _process(delta):
 		rotation_degrees.y = target_y_rotation
 		
 	# Breathing
-	var time = Time.get_ticks_msec() * 0.00025 * PI
+	# var time = Time.get_ticks_msec() * 0.00025 * PI
 	
-	rotation_degrees.y += cos(time * 0.5) * 0.125
-	rotation_degrees.x = sin(time) * 0.5
+	# rotation_degrees.y += cos(time * 0.5) * 0.125
+	# rotation_degrees.x = sin(time) * 0.5
 
 	# Shaky part
 	if shaking:

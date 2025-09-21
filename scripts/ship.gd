@@ -10,6 +10,8 @@ class_name Ship extends Node3D
 @export var red_light: Light3D
 @export var audio: AudioStreamPlayer
 
+@export var asteroid_hit_factor: float
+
 var redlight_timer: float = 0
 var redlight_flashtime: float = 0
 var redlight_flashing: bool = false
@@ -98,6 +100,6 @@ func on_area_entered(_area: Area3D) -> void:
 		ping_radar(_area)
 
 func ship_hit():
-	global_position = global_position + Vector3(randf_range(-4, 4), 0, randf_range(-4, 4))
+	global_position = global_position + Vector3(randf_range(-asteroid_hit_factor, asteroid_hit_factor), 0, randf_range(-asteroid_hit_factor, asteroid_hit_factor))
 	audio.play()
 	camera.shake(2, 0.10, 2)

@@ -30,7 +30,7 @@ func add_ping(x: float, y: float, enemy: bool = false) -> void:
 	viewport.add_child(ping)
 
 	var tween := create_tween().set_ease(Tween.EASE_OUT)
-	tween.tween_property(ping, "modulate", Color(1, 1, 1, 0), 4)
+	tween.tween_property(ping, "modulate", Color(1, 1, 1, 0), 2)
 
 	await tween.finished
 	ping.queue_free()

@@ -8,6 +8,7 @@ class_name Ship extends Node3D
 @export var rotation_speed: float
 @onready var area: Area3D = $Area3D
 @export var red_light: Light3D
+@export var audio: AudioStreamPlayer
 
 var redlight_timer: float = 0
 var redlight_flashtime: float = 0
@@ -98,4 +99,5 @@ func on_area_entered(_area: Area3D) -> void:
 
 func ship_hit():
 	global_position = global_position + Vector3(randf_range(-4, 4), 0, randf_range(-4, 4))
+	audio.play()
 	camera.shake(2, 0.10, 2)

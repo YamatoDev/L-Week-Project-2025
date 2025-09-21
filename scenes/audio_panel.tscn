@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://djl6nf88wdghv"]
 
 [ext_resource type="Script" uid="uid://7bu8k4rys84v" path="res://scripts/volume_slider.gd" id="1_0or1g"]
-[ext_resource type="Script" uid="uid://dcvd2kdbspe5j" path="res://scenes/audio_panel.gd" id="1_74cmt"]
+[ext_resource type="Script" uid="uid://dcvd2kdbspe5j" path="res://scripts/audio_panel.gd" id="1_74cmt"]
 
 [node name="AudioPanel" type="Panel"]
 anchors_preset = 1

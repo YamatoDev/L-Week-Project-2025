@@ -6,23 +6,10 @@ extends Node3D
 
 var move_direction := 0
 var steer_direction := 0.0
+var velocity := Vector3.ZERO
 
 func _ready() -> void:
 	ship.radar = radar_init
-<<<<<<< Updated upstream
-	ship.camera = camera_init
-	
-func _process(_delta: float) -> void:
-	steer_direction = Input.get_axis("steer_left", "steer_right")
-	
-	#print(move_direction, steer_direction)
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("toggle_move_forward"):
-		move_direction = 1 if move_direction != 1 else 0
-	if event.is_action_pressed("toggle_move_backward"):
-		move_direction = -1 if move_direction != -1 else 0
-=======
 	print(ship.radar)
 
 func _process(delta: float) -> void:
@@ -35,4 +22,3 @@ func _physics_process(delta: float) -> void:
 	
 	velocity += delta_velocity * delta
 	position += velocity * delta
->>>>>>> Stashed changes

@@ -5,16 +5,8 @@ var flipped := false
 var last_toggle_time := 0
 var toggle_cooldown := 1000   # milliseconds (0.3s)
 var target_y_rotation := 90.0
-var rotation_speed := 5.0 # degrees per frame, adjust for smoothness
-
-# Shaking part
-@onready var original_pos: Vector3 = global_position
-
-var shake_factor: float = 0
-var shake_duration: float = 0
-var shake_intensity: float = 0
-var shake_frequency: float = 0
-var shaking: bool = false
+var rotation_speed := 5.0
+var selected_object = null
 
 # Shaking part
 @onready var original_pos: Vector3 = global_position
@@ -26,12 +18,18 @@ var shake_frequency: float = 0
 var shaking: bool = false
 
 func _input(event):
-	if event is InputEventMouse:
+	if event is InputEventMouseMotion:
 		mouse = event.position
 
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			get_selection()
+			if event.pressed:
+				get_selection()
+			else:
+				if selected_object and selected_object.has_method("on_deselect"):
+					selected_object.on_deselect()
+
+				selected_object = null
 
 	if Input.is_action_pressed("change_cam"):
 		_try_toggle_camera_rotation()
@@ -42,7 +40,9 @@ func get_selection():
 	var end = start + project_ray_normal(mouse) * 1000
 	var result = worldspace.intersect_ray(PhysicsRayQueryParameters3D.create(start, end))
 	if result and result.collider.has_method("on_interact"):
-		result.collider.on_interact()
+		selected_object = result.collider
+
+		selected_object.on_interact()
 
 func _try_toggle_camera_rotation():
 	var now = Time.get_ticks_msec()

@@ -22,24 +22,15 @@ func _process(delta: float) -> void:
 
 	if (spawn_cd_left <= 0):
 		var new_asteroid = asteroid_instance_path.instantiate()
-		new_asteroid.set_position(Vector3(
+		new_asteroid.set_position(global_position + Vector3(
 			randf_range(shape_min.x, shape_max.x), 
 			randf_range(shape_min.y, shape_max.y),
 			randf_range(shape_min.z, shape_max.z)
 		))
-<<<<<<< Updated upstream
-
-		new_asteroid.set_rotation_degrees(Vector3(0, 0, 0))
-
-		new_asteroid.ship = ship
-
-		add_child(new_asteroid)
-=======
 		new_asteroid.set_rotation_degrees(global_rotation_degrees + Vector3(0, 90, 0))
 
 		new_asteroid.ship = ship
 		
 		get_tree().root.add_child(new_asteroid)
->>>>>>> Stashed changes
 		
 		spawn_cd_left = spawn_cd

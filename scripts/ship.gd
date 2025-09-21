@@ -1,19 +1,12 @@
 class_name Ship extends Node3D
 
-<<<<<<< Updated upstream
-var radar: Radar: set = _set_radar, get = _get_radar
-var camera: MainCamera
-=======
 @export var radar: Radar: set = _set_radar, get = _get_radar
 @export var camera: MainCamera
 @export var move_speed: float
->>>>>>> Stashed changes
 
 @export var ray: Marker3D
 @export var rotation_speed: float
 @onready var area: Area3D = $Area3D
-<<<<<<< Updated upstream
-=======
 @export var red_light: Light3D
 @export var audio: AudioStreamPlayer
 
@@ -26,7 +19,6 @@ var steer_direction := 0.0
 var velocity := Vector3.ZERO
 
 var monster_active: bool = false
->>>>>>> Stashed changes
 
 var hit_bodies: Array = []
 
@@ -102,17 +94,10 @@ func ping_radar(body: Area3D) -> void:
 	pass
 
 func on_area_entered(_area: Area3D) -> void:
-<<<<<<< Updated upstream
-	if (_area != $Area3D):
-		ping_radar(_area)
-
-func ship_hit():
-=======
 	if (_area != $Area3D and _area != $MonsterCheck):
 		ping_radar(_area)
 
 func ship_hit():
 	global_position = global_position + Vector3(randf_range(-4, 4), 0, randf_range(-4, 4))
 	audio.play()
->>>>>>> Stashed changes
 	camera.shake(2, 0.10, 2)

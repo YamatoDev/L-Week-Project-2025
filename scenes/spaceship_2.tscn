@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://uxkp2m7023tk"]
+
+[ext_resource type="PackedScene" uid="uid://bw03wvv367lsg" path="res://models/Spaceship.blend" id="1_thst5"]
+
+[node name="Spaceship2" instance=ExtResource("1_thst5")]

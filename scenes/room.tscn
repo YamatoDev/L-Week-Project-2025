@@ -170,14 +170,6 @@ bus = &"sfx"
 stream = ExtResource("16_2cm04")
 bus = &"sfx"
 
-[node name="crash" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("15_1wmww")
-bus = &"sfx"
-
-[node name="alarm" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("16_ftego")
-bus = &"sfx"
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6tcb1")
 

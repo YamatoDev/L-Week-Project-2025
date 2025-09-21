@@ -6,6 +6,7 @@ class_name PhotographyScreen
 @export var monsters: Array[TextureData] = []
 @export var score_display: Label3D
 @export var congrats: Control
+@export var location_manager: LocationManager
 @onready var space_screen:= $SubViewport/textureholder
 
 var score: int = 0;
@@ -51,6 +52,7 @@ func _update_texture(textureData: TextureData):
 
 func _update_text() -> void:
 	score+=1
+	location_manager._move_to_next_enemy()
 	score_display.text = str(score) + "/3"
 	
 	if score >= 3:

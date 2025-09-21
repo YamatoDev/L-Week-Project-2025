@@ -8,4 +8,5 @@ script = ExtResource("1_njs3x")
 name = "Space03"
 texture = ExtResource("2_njs3x")
 is_active = true
+picture_taken = true
 metadata/_custom_type_script = "uid://dcw06i4v03dp"

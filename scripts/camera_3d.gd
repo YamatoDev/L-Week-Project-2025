@@ -1,7 +1,9 @@
 class_name MainCamera extends Camera3D
 
+@export var audio: AudioStreamPlayer
+
 var mouse = Vector2()
-var flipped := false
+var flipped := true
 var last_toggle_time := 0
 var toggle_cooldown := 1000   # milliseconds (0.3s)
 var target_y_rotation := 90.0
@@ -54,6 +56,13 @@ func _toggle_camera_rotation() -> void:
 	flipped = !flipped
 	target_y_rotation = 90 if flipped else -90
 
+func _physics_process(_delta: float) -> void:
+	# Breathing
+	var time = Time.get_ticks_msec() * 0.00025 * PI
+	
+	rotation_degrees.y += cos(time * 0.5) * 0.125
+	rotation_degrees.x = sin(time) * 0.5
+
 func _process(delta):
 	# Smoothly interpolate the y rotation towards the target
 	var current_y = rotation_degrees.y
@@ -61,6 +70,12 @@ func _process(delta):
 		rotation_degrees.y = lerp(current_y, target_y_rotation, rotation_speed * delta)
 	else:
 		rotation_degrees.y = target_y_rotation
+
+	# Breathing
+	# var time = Time.get_ticks_msec() * 0.00025 * PI
+	
+	# rotation_degrees.y += cos(time * 0.5) * 0.125
+	# rotation_degrees.x = sin(time) * 0.5
 
 	# Shaky part
 	if shaking:
@@ -77,6 +92,9 @@ func _process(delta):
 			randf_range(-shake_intensity, shake_intensity),
 			randf_range(-shake_intensity, shake_intensity)
 		) * shake_factor, shake_frequency)
+		
+		rotation_degrees.z = randf_range(-shake_intensity, shake_intensity) * shake_factor * shake_frequency * 30
+		rotation_degrees.x = randf_range(-shake_intensity, shake_intensity) * shake_factor * shake_frequency * 30
 
 # Duration can be optional, along with the intensity and the frequency
 # Intensity idealy should be around 0.01 to 0.5, as any more than that is too intense
@@ -87,3 +105,7 @@ func shake(factor: float, intensity: float = 0.0, duration: float = 0.0, frequen
 	shake_intensity = intensity
 	shake_frequency = frequency
 	shaking = true
+
+func _ready() -> void:
+	shake(1.0, 0.5, 1.0, 0.25)
+	audio.play()

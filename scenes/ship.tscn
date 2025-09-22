@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ufvd4undc2f6"]
+[gd_scene load_steps=8 format=3 uid="uid://b6c62vs3ae24o"]
 
 [ext_resource type="Script" uid="uid://b4ffmk5mwkjvv" path="res://scripts/ship.gd" id="1_l3rv8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ssgem"]
-size = Vector3(8, 1, 0.2)
+size = Vector3(15, 1, 0.2)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q631a"]
+radius = 0.1
+height = 15.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oson4"]
 size = Vector3(1, 1, 1.0108)
@@ -11,7 +15,11 @@ size = Vector3(1, 1, 1.0108)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ssgem"]
 points = PackedVector3Array(0, 0, 0, 3, -3, 6, -3, -3, 6, 3, 3, 6, -3, 3, 6)
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_q631a"]
+albedo_color = Color(1.54018e-06, 0.681358, 0.827812, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_q631a"]
+material = SubResource("ORMMaterial3D_q631a")
 
 [node name="ship" type="Node3D" node_paths=PackedStringArray("ray")]
 script = ExtResource("1_l3rv8")
@@ -23,8 +31,12 @@ rotation_speed = 135.0
 [node name="Area3D" type="Area3D" parent="Radar"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Radar/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
 shape = SubResource("BoxShape3D_ssgem")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Radar/Area3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 7.6, 0, 0)
+mesh = SubResource("CapsuleMesh_q631a")
 
 [node name="Area3D" type="Area3D" parent="."]
 

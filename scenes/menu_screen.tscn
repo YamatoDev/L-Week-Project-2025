@@ -1,6 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccu2lukg30iav"]
+[gd_scene load_steps=12 format=3 uid="uid://ccu2lukg30iav"]
 
 [ext_resource type="Script" uid="uid://be160eqrwc3x3" path="res://menu_scripts/menu_screen.gd" id="1_tuusc"]
+[ext_resource type="AudioStream" uid="uid://crut6tsxuiku" path="res://audio/game_start.wav" id="2_e6vgv"]
+[ext_resource type="FontFile" uid="uid://chjms6ahayvhm" path="res://fonts/Kenney Future Square.ttf" id="2_sm2ni"]
+[ext_resource type="AudioStream" uid="uid://bjnstrsexed1u" path="res://audio/ship.wav" id="3_pn7wg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuusc"]
 
@@ -90,14 +93,18 @@ metadata/_edit_use_anchors_ = true
 
 [node name="title" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -471.0
+offset_top = 50.0
+offset_right = 499.0
+offset_bottom = 284.0
 grow_horizontal = 2
-grow_vertical = 2
 scale = Vector2(0.997619, 1)
-theme_override_font_sizes/font_size = 128
-text = "Signalis 2"
+theme_override_fonts/font = ExtResource("2_sm2ni")
+theme_override_font_sizes/font_size = 208
+text = "Nadir-25"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -105,9 +112,9 @@ metadata/_edit_use_anchors_ = true
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
+anchor_left = 0.491319
 anchor_top = 0.639
-anchor_right = 0.5
+anchor_right = 0.509549
 anchor_bottom = 0.639
 offset_left = -191.0
 offset_top = -0.072052
@@ -117,17 +124,25 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_sm2ni")
 theme_override_font_sizes/font_size = 128
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tuusc")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ylmtb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tuusc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_iefc8")
-text = "START"
+text = " START"
 metadata/_edit_use_anchors_ = true
 
 [node name="fade_to_black" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_iefc8")
 }
+
+[node name="start_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_e6vgv")
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pn7wg")
+autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_start_button_pressed"]

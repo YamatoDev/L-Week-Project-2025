@@ -8,4 +8,5 @@ script = ExtResource("1_x7w5l")
 name = "Monster1"
 texture = ExtResource("2_x7w5l")
 is_active = false
+picture_taken = false
 metadata/_custom_type_script = "uid://dcw06i4v03dp"

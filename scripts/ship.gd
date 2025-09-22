@@ -10,6 +10,8 @@ class_name Ship extends Node3D
 @export var red_light: Light3D
 @export var audio: AudioStreamPlayer
 
+@export var ship_model: ShipModel
+
 @export var asteroid_hit_factor: float
 
 var redlight_timer: float = 0
@@ -45,6 +47,37 @@ func _physics_process(delta: float) -> void:
 	
 	velocity += delta_velocity * delta
 	position += velocity * delta
+
+	# Ship Sticks Control
+	# ----------> Garbage <----------
+	var fb_stick_x: float = ship_model.fb_stick.rotation_degrees.x
+	var lr_stick_z: float = ship_model.lr_stick.rotation_degrees.z
+
+	var forward_target_x: float = -30 # applies to right too
+	var backward_target_x: float = 30 # applies to left too
+	var neutral_target_x: float = 0
+
+	# Forward / Backward
+	if move_direction == 1:
+		if abs(fb_stick_x - forward_target_x) > 0.1: ship_model.fb_stick.rotation_degrees.x = lerp(fb_stick_x, forward_target_x, 7.5 * delta)
+		else: ship_model.fb_stick.rotation_degrees.x = forward_target_x
+	elif move_direction == -1:
+		if abs(fb_stick_x - backward_target_x) > 0.1: ship_model.fb_stick.rotation_degrees.x = lerp(fb_stick_x, backward_target_x, 7.5 * delta)
+		else: ship_model.fb_stick.rotation_degrees.x = backward_target_x
+	else:
+		if abs(fb_stick_x - neutral_target_x) > 0.1: ship_model.fb_stick.rotation_degrees.x = lerp(fb_stick_x, neutral_target_x, 7.5 * delta)
+		else: ship_model.fb_stick.rotation_degrees.x = neutral_target_x
+
+	# Left / Right
+	if steer_direction > 0:
+		if abs(lr_stick_z - forward_target_x) > 0.1: ship_model.lr_stick.rotation_degrees.z = lerp(lr_stick_z, forward_target_x, 7.5 * delta)
+		else: ship_model.lr_stick.rotation_degrees.z = forward_target_x
+	elif steer_direction < 0:
+		if abs(lr_stick_z - backward_target_x) > 0.1: ship_model.lr_stick.rotation_degrees.z = lerp(lr_stick_z, backward_target_x, 7.5 * delta)
+		else: ship_model.lr_stick.rotation_degrees.z = backward_target_x
+	else:
+		if abs(lr_stick_z - neutral_target_x) > 0.1: ship_model.lr_stick.rotation_degrees.z = lerp(lr_stick_z, neutral_target_x, 7.5 * delta)
+		else: ship_model.lr_stick.rotation_degrees.z = neutral_target_x
 
 func _process(delta: float) -> void:
 	steer_direction = Input.get_axis("steer_left", "steer_right")

@@ -11,6 +11,12 @@ func _ready() -> void:
 	else:
 		_retrieve_id()
 
+	print ("DEBUG: -- CHUNK C SPAWN LOCATIONS --")
+	var i: int = 0
+	for enemypos in enemy_spawns:
+		print("[%s] %d, %d" % [_index_to_char(i), int(enemypos.global_position.x), int(enemypos.global_position.z)])
+		i += 1
+
 func _on_id_ready(gid: String) -> void:
 	id_string = gid
 	_set_monster_spawn()
@@ -38,3 +44,13 @@ func _char_to_index(ch: String) -> int:
 		"=": return 4
 		"?": return 5
 		_: return 0
+
+func _index_to_char(ch: int) -> String:
+	match ch:
+		0: return "<"
+		1: return ">"
+		2: return "+"
+		3: return "-"
+		4: return "="
+		5: return "?"
+		_: return "null"

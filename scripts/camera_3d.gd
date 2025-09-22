@@ -3,7 +3,7 @@ class_name MainCamera extends Camera3D
 @export var audio: AudioStreamPlayer
 
 var mouse = Vector2()
-var flipped := false
+var flipped := true
 var last_toggle_time := 0
 var toggle_cooldown := 1000   # milliseconds (0.3s)
 var target_y_rotation := 90.0
@@ -70,7 +70,7 @@ func _process(delta):
 		rotation_degrees.y = lerp(current_y, target_y_rotation, rotation_speed * delta)
 	else:
 		rotation_degrees.y = target_y_rotation
-		
+
 	# Breathing
 	# var time = Time.get_ticks_msec() * 0.00025 * PI
 	

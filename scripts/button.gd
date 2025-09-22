@@ -19,4 +19,3 @@ func on_interact():
 		can_press = false
 		await get_tree().create_timer(0.4).timeout
 		can_press = true
-

@@ -10,6 +10,11 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5eocc"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_g0dnf")
+emission = Color(0.29219, 0.29219, 0.29219, 1)
+emission_energy_multiplier = 16.0
+emission_operator = 1
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ot4hg"]
 
@@ -26,7 +31,7 @@ radar_sweep = NodePath("SubViewport/radarsweep")
 viewport = NodePath("SubViewport")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(9.05975e-08, 0.6, 4.52987e-08, -2.62268e-08, 4.52987e-08, -0.6, -0.6, 9.05975e-08, 2.62268e-08, 0, 0, 0)
+transform = Transform3D(9.05975e-08, 0.6, 4.52987e-08, -2.62268e-08, 4.52987e-08, -0.6, -0.6, 9.05975e-08, 2.62268e-08, 0.000224292, -5.96046e-08, 0.00275934)
 material_override = SubResource("StandardMaterial3D_5eocc")
 mesh = SubResource("PlaneMesh_ot4hg")
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://fgpdypbpw40x" path="res://scripts/camera_3d.gd" id="1_4o3f6"]
 [ext_resource type="PackedScene" uid="uid://djl6nf88wdghv" path="res://scenes/audio_panel.tscn" id="1_tk5fv"]
 [ext_resource type="PackedScene" uid="uid://uxkp2m7023tk" path="res://scenes/spaceship_2.tscn" id="1_vfrn5"]
+[ext_resource type="Script" uid="uid://kt7ln3dsuvyd" path="res://scripts/spaceship_2.gd" id="2_2cm04"]
 [ext_resource type="PackedScene" path="res://scenes/photography.tscn" id="4_jxwrd"]
 [ext_resource type="Script" uid="uid://dejf5p8ojl8y2" path="res://scripts/button.gd" id="4_v5vuv"]
 [ext_resource type="Script" uid="uid://dcw06i4v03dp" path="res://scripts/texture_data.gd" id="5_spkk5"]
@@ -35,18 +36,6 @@
 [ext_resource type="AudioStream" uid="uid://xtd2l5ju5ids" path="res://audio/Monster2.wav" id="30_ftego"]
 [ext_resource type="AudioStream" uid="uid://dysq1laoe6xfr" path="res://audio/Monster1.wav" id="32_c4f3b"]
 [ext_resource type="AudioStream" uid="uid://b1rj0w8p2dgn4" path="res://audio/Monster3.wav" id="33_3aavd"]
-
-[sub_resource type="GDScript" id="GDScript_1wmww"]
-script/source = "class_name AlarmSound extends Node
-
-@export var alarm: AudioStreamPlayer
-
-func _set_audio_on():
-	alarm.play()
-	
-func _set_audio_off():
-	alarm.stop()
-"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v5vuv"]
 height = 0.388062
@@ -119,12 +108,13 @@ process_mode = 1
 
 [node name="Spaceship2" parent="." instance=ExtResource("1_vfrn5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04626, 0, 0.075446)
-script = SubResource("GDScript_1wmww")
+script = ExtResource("2_2cm04")
 
-[node name="Node3D" type="StaticBody3D" parent="Spaceship2" node_paths=PackedStringArray("spaceScreen")]
+[node name="Node3D" type="StaticBody3D" parent="Spaceship2" node_paths=PackedStringArray("spaceScreen", "spaceship_model")]
 transform = Transform3D(-1.74743e-08, -5.98307e-10, -0.4, -0.0136877, 0.399766, 2.03775e-15, 0.399766, 0.0136877, -1.74846e-08, -0.00366347, 0.712128, 1.36413)
 script = ExtResource("4_v5vuv")
 spaceScreen = NodePath("../Screen")
+spaceship_model = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Spaceship2/Node3D"]
 transform = Transform3D(1, 1.82539e-07, 9.26442e-22, -1.82539e-07, 1, 1.27055e-21, -1.3017e-21, 1.69407e-21, 1, 0, 0.486145, 0)
@@ -205,7 +195,7 @@ player_label = NodePath("player_location_display")
 enemy_label = NodePath("enemy_location_display")
 
 [node name="player_location_display" type="Label3D" parent="LocationManager"]
-transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.61725, 1.54883, 0.0692754)
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.50781, 1.43939, 0.0692754)
 shaded = true
 modulate = Color(3.46541e-06, 0.730261, 0.56219, 1)
 outline_modulate = Color(1, 1, 1, 1)
@@ -216,6 +206,7 @@ outline_size = 5
 
 [node name="enemy_location_display" type="Label3D" parent="LocationManager"]
 transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, -1.33999, 1.23297, 0.0692754)
+visible = false
 shaded = true
 modulate = Color(3.46541e-06, 0.730261, 0.56219, 1)
 outline_modulate = Color(1, 1, 1, 1)
@@ -227,20 +218,21 @@ outline_size = 5
 [node name="radar" parent="." instance=ExtResource("10_mb7s7")]
 transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -2.04404, 2.72646, 0.0671765)
 
-[node name="ship" parent="." node_paths=PackedStringArray("radar", "camera", "red_light", "audio") instance=ExtResource("18_2ftkj")]
+[node name="ship" parent="." node_paths=PackedStringArray("radar", "camera", "red_light", "audio", "ship_model") instance=ExtResource("18_2ftkj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -4, 0)
 radar = NodePath("../radar")
 camera = NodePath("../Camera3D")
-move_speed = 2.5
-rotation_speed = 270.0
+move_speed = 7.5
+rotation_speed = 330.0
 red_light = NodePath("../RedLight")
 audio = NodePath("../Audio/crash")
+ship_model = NodePath("../Spaceship2")
 asteroid_hit_factor = 16.0
 
 [node name="asteroid_spawner" parent="ship" node_paths=PackedStringArray("ship") instance=ExtResource("19_ny2il")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.27299e-06, 0, 52)
 ship = NodePath("..")
-spawn_cd = 0.75
+spawn_cd = 0.7
 
 [node name="AudioListener3D" type="AudioListener3D" parent="ship"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.52831e-08, 0, 1.4935)
@@ -301,7 +293,7 @@ enemy_spawns = [NodePath("Spawn 1"), NodePath("Spawn 2"), NodePath("Spawn 3"), N
 monster = NodePath("../Area3D")
 
 [node name="Spawn 1" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
-transform = Transform3D(1, 0, 0, 0, 0.494837, -0.868986, 0, 0.868986, 0.494837, 36.1086, 0, 61.0502)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1086, 0, 61.0502)
 
 [node name="Spawn 2" type="Node3D" parent="Environment/Chunk A/EnemySpawnContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8609, 0, -32.2608)

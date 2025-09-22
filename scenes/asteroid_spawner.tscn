@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://crvpnotk1y8s8" path="res://scenes/asteroid.tscn" id="2_g31ip"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ltblv"]
-size = Vector3(1, 1, 120)
+size = Vector3(1, 1, 90)
 
 [node name="asteroid_spawner" type="Node3D" node_paths=PackedStringArray("area")]
 script = ExtResource("1_e6spt")

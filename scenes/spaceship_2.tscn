@@ -1,5 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://uxkp2m7023tk"]
+[gd_scene load_steps=5 format=3 uid="uid://uxkp2m7023tk"]
 
 [ext_resource type="PackedScene" uid="uid://bw03wvv367lsg" path="res://models/Spaceship.blend" id="1_thst5"]
 
+[sub_resource type="Animation" id="Animation_thst5"]
+resource_name = "button_press"
+length = 0.4
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button Inter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.853688, 1.375, 0.0666667, 1, 0, 0.759842, 1.375, 0.4, 1, 0, 0.853688, 1.375)
+
+[sub_resource type="Animation" id="Animation_qow6d"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button Inter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.853688, 1.375)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jn86m"]
+_data = {
+&"RESET": SubResource("Animation_qow6d"),
+&"button_press": SubResource("Animation_thst5")
+}
+
 [node name="Spaceship2" instance=ExtResource("1_thst5")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Button Inter" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+libraries = {
+&"": SubResource("AnimationLibrary_jn86m")
+}

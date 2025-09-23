@@ -1,24 +1,27 @@
 class_name Ship extends Node3D
 
+@export_group("Objects")
 @export var radar: Radar: set = _set_radar, get = _get_radar
 @export var camera: MainCamera
-@export var move_speed: float
-
 @export var ray: Marker3D
-@export var rotation_speed: float
-@onready var area: Area3D = $Area3D
-@export var red_light: Light3D
-@export var audio: AudioStreamPlayer
-
 @export var ship_model: ShipModel
+@export var audio: AudioStreamPlayer
+@export var asteroid_label: Label3D
+@export var anomaly_label: Label3D
 
+@export_group("Variables")
+@export var red_light: Light3D
+@export var rotation_speed: float
+@export var move_speed: float
 @export var asteroid_hit_factor: float
+
+@onready var area: Area3D = $Area3D
 
 var redlight_timer: float = 0
 var redlight_flashtime: float = 0
 var redlight_flashing: bool = false
 
-var move_direction := 0
+var move_direction := 0.0
 var steer_direction := 0.0
 var velocity := Vector3.ZERO
 
@@ -42,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	ray.rotate_y(-deg_to_rad(rotation_speed * delta))
 	radar.rotate_sweep(-ray.rotation_degrees.y) # ???????????
 
-	var target_velocity = Vector3(steer_direction * abs(move_direction) * move_speed, 0.0, -move_direction * move_speed) * basis
+	var target_velocity = Vector3(steer_direction * move_speed, 0.0, -move_direction * move_speed) * basis
 	var delta_velocity = target_velocity - velocity
 	
 	velocity += delta_velocity * delta
@@ -81,9 +84,14 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	steer_direction = Input.get_axis("steer_left", "steer_right")
+	move_direction = Input.get_axis("toggle_move_backward", "toggle_move_forward")
 
-	if monster_active: redlight_flashing = true
-	else: redlight_flashing = false
+	if monster_active: 
+		redlight_flashing = true
+		anomaly_label.visible = true
+	else: 
+		redlight_flashing = false
+		anomaly_label.visible = false
 
 	if redlight_flashing:
 		redlight_timer += delta
@@ -96,13 +104,13 @@ func _process(delta: float) -> void:
 		redlight_flashtime = 0
 		red_light.visible = false
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("toggle_move_forward"):
-		print(1 if move_direction != 1 else 0)
-		move_direction = 1 if move_direction != 1 else 0
-	if event.is_action_pressed("toggle_move_backward"):
-		print(-1 if move_direction != -1 else 0)
-		move_direction = -1 if move_direction != -1 else 0
+# func _unhandled_input(event: InputEvent) -> void:
+# 	if event.is_action_pressed("toggle_move_forward"):
+# 		print(1 if move_direction != 1 else 0)
+# 		move_direction = 1 if move_direction != 1 else 0
+# 	if event.is_action_pressed("toggle_move_backward"):
+# 		print(-1 if move_direction != -1 else 0)
+# 		move_direction = -1 if move_direction != -1 else 0
 
 func ping_radar(body: Area3D) -> void:
 	hit_bodies.push_back(body)
@@ -136,3 +144,8 @@ func ship_hit():
 	global_position = global_position + Vector3(randf_range(-asteroid_hit_factor, asteroid_hit_factor), 0, randf_range(-asteroid_hit_factor, asteroid_hit_factor))
 	audio.play()
 	camera.shake(2, 0.10, 2)
+	asteroid_label.visible = true
+
+	await get_tree().create_timer(6.0).timeout
+
+	asteroid_label.visible = false

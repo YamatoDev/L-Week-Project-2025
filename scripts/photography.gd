@@ -52,7 +52,6 @@ func _update_texture(textureData: TextureData):
 
 func _update_text() -> void:
 	score+=1
-	location_manager._move_to_next_enemy()
 	score_display.text = str(score) + "/3"
 	
 	if score >= 3:
